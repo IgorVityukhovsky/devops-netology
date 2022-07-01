@@ -50,19 +50,8 @@ LANG=en_US.UTF-8PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:
 /bin:/snap/binHOME=/home/vagrantLOGNAME=vagrantUSER=vagrant
 SHELL=/bin/bashINVOCATION_ID=51eee105e009477d8a0962e153747446JOURNAL_STREAM=9:28760my_var=my_var  #моя переменная my_var
 
-#(посмотрите, например, на systemctl cat cron)
-Однако, если посмотреть в указанный пример, то в unit файле будет запись
-
-EnvironmentFile=-/etc/default/cron
-
-а в /etc/default/cron
-
-# This file has been deprecated. Please add custom options for cron using
-# $ systemctl edit cron.service
-# or
-# $ systemctl edit --full cron.service
-
-Вероятно, это устарело либо в общем случае, либо в частном случае для cron
+#В файле Unit описаны опции и их значения
+опция EnvironmentFile ссылается на файл, содержащий переменные
 
 
 
