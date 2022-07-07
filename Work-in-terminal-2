@@ -153,14 +153,19 @@ reptyr PID
 sudo nano /proc/sys/kernel/yama/ptrace_scope #исправить единственное значение на 0
 
 
-???
+Конкретно с командой ping получилось по следующей инструкции:
 
-Потратил очень много времени на это задание, так как на самом деле передача процесса не работает с командой ping.
-Почему - ответ не нашел (даже по инструкции https://github.com/nelhage/reptyr#readme
-ошибки связанные с доступом, даже через sudo reptyr -T PID).
-На команде top всё работает.
-
-???
+Start a long running process, e.g. ping
+Background the process with CTRL-Z
+Resume the process in the background: bg
+Display your running background jobs with jobs -l, this should look like this:
+[1]+ 4711 Stopped (signal) top
+(The -l in jobs -l makes sure you'll get the PID)
+Disown the jobs from the current parent with disown top. After that, jobs will not show the job any more, but ps -a will.
+Start your terminal multiplexer of choice, e.g. tmux
+Reattach to the backgrounded process: reptyr 4711
+Detach your terminal multiplexer (e.g. CTRL-A D) and close ssh
+Reconnect ssh, attach to your multiplexer (e.g. tmux attach), rejoice!
 
 
 Вопрос: sudo echo string > /root/new_file не даст выполнить перенаправление под обычным пользователем,
