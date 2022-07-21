@@ -1,39 +1,28 @@
-Вопрос:
+1. Установите Bitwarden плагин для браузера. Зарегистрируйтесь и сохраните несколько паролей.
+```
+https://ibb.co/xhTgZm6
+```
+```
+https://ibb.co/DpWfFD3
+```
 
-Установите Bitwarden плагин для браузера. Зарегистрируйтесь и сохраните несколько паролей.
-
-Ответ:
-
-Выполнено
-
-
-
-Вопрос:
-
-Установите Google authenticator на мобильный телефон. Настройте вход в Bitwarden аккаунт через Google authenticator OTP.
-
-Ответ:
-
-Выполнено
-
-
-
-Вопрос:
-
-Установите apache2, сгенерируйте самоподписанный сертификат, настройте тестовый сайт для работы по HTTPS.
-
-Ответ:
-
+2. Установите Google authenticator на мобильный телефон. Настройте вход в Bitwarden аккаунт через Google authenticator OTP
+```
+https://ibb.co/Y3pK1QT
+```
+3. Установите apache2, сгенерируйте самоподписанный сертификат, настройте тестовый сайт для работы по HTTPS.
+```
 sudo apt install apache2
 sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
-
-Generating a RSA private key
-...
-writing new private key to '/etc/ssl/private/apache-selfsigned.key'
-...
-
+```
+```
+Generating a RSA private key...
+...writing new private key to '/etc/ssl/private/apache-selfsigned.key'
+```
+```
 sudo nano /etc/apache2/conf-available/ssl-params.conf
-
+```
+```
 SSLCipherSuite EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH
 SSLProtocol All -SSLv2 -SSLv3 -TLSv1 -TLSv1.1
 SSLHonorCipherOrder On
@@ -48,8 +37,12 @@ SSLUseStapling on
 SSLStaplingCache "shmcb:logs/stapling-cache(150000)"
 # Requires Apache >= 2.4.11
 SSLSessionTickets Off
-$ sudo cp /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf.bak
-$ sudo nano /etc/apache2/sites-available/default-ssl.conf
+```
+```
+sudo cp /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf.bak
+sudo nano /etc/apache2/sites-available/default-ssl.conf
+```
+```
 <IfModule mod_ssl.c>
         <VirtualHost _default_:443>
                 ServerAdmin your_email@example.com
@@ -74,9 +67,11 @@ $ sudo nano /etc/apache2/sites-available/default-ssl.conf
 
         </VirtualHost>
 </IfModule>
-
+```
+```
 sudo nano /etc/apache2/sites-available/000-default.conf
-
+```
+```
 <VirtualHost *:80>
         . . .
 
@@ -84,25 +79,22 @@ sudo nano /etc/apache2/sites-available/000-default.conf
 
         . . .
 </VirtualHost>
-
+```
+```
 sudo a2enmod ssl
 sudo a2enmod headers
 sudo a2ensite default-ssl
 sudo a2enconf ssl-params
 sudo apache2ctl configtest
 sudo systemctl restart apache2
+```
+4. Проверьте на TLS уязвимости произвольный сайт в интернете.
 
-
-
-Вопрос:
-
-Проверьте на TLS уязвимости произвольный сайт в интернете.
-
-Ответ:
-
+```
 docker run --rm -ti  drwetter/testssl.sh -U --sneaky https://ya.ru
-...
- Further IP addresses:   2a02:6b8::2:242
+```
+```
+Further IP addresses:   2a02:6b8::2:242
  rDNS (87.250.250.242):  ya.ru.
  Service detected:       HTTP
 
@@ -131,16 +123,10 @@ docker run --rm -ti  drwetter/testssl.sh -U --sneaky https://ya.ru
  LUCKY13 (CVE-2013-0169), experimental     potentially VULNERABLE, uses cipher block chaining (CBC) ciphers with TLS. Check patches
  Winshock (CVE-2014-6321), experimental    not vulnerable (OK)
  RC4 (CVE-2013-2566, CVE-2015-2808)        no RC4 ciphers detected (OK)
-
-
-
-Вопрос:
-
-Установите на Ubuntu ssh сервер, сгенерируйте новый приватный ключ. Скопируйте свой публичный ключ на другой сервер. Подключитесь к серверу по SSH-ключу.
-
-Ответ:
-
-vagrant@VM1:~$ ssh-keygen
+ ```
+ 5. Установите на Ubuntu ssh сервер, сгенерируйте новый приватный ключ. Скопируйте свой публичный ключ на другой сервер. Подключитесь к серверу по SSH-ключу.
+ ```
+ vagrant@VM1:~$ ssh-keygen
 Generating public/private rsa key pair.
 Enter file in which to save the key (/home/vagrant/.ssh/id_rsa):
 ...
@@ -150,15 +136,9 @@ vagrant@VM1:~$ ssh vagrant@172.28.128.60
 Welcome to Ubuntu 20.04.2 LTS (GNU/Linux 5.4.0-80-generic x86_64)
 ...
 vagrant@VM2:~$
-
-
-
-Вопрос:
-
-Переименуйте файлы ключей из задания 5. Настройте файл конфигурации SSH клиента, так чтобы вход на удаленный сервер осуществлялся по имени сервера.
-
-Ответ:
-
+```
+6. Переименуйте файлы ключей из задания 5. Настройте файл конфигурации SSH клиента, так чтобы вход на удаленный сервер осуществлялся по имени сервера.
+```
 vagrant@netologyVM1:~$ sudo mv ~/.ssh/id_rsa ~/.ssh/id_rsa_netology
 vagrant@netologyVM1:~$ sudo nano ~/.ssh/config
 Host netologyVM2
@@ -170,17 +150,12 @@ vagrant@netologyVM1:~$ ssh netologyVM2
 Welcome to Ubuntu 20.04.2 LTS (GNU/Linux 5.4.0-80-generic x86_64)
 ....
 vagrant@netologyVM2:~$
-
-
-
-Вопрос:
-
-Соберите дамп трафика утилитой tcpdump в формате pcap, 100 пакетов. Откройте файл pcap в Wireshark.
-
-Ответ:
-
+```
+7. Соберите дамп трафика утилитой tcpdump в формате pcap, 100 пакетов. Откройте файл pcap в Wireshark.
+```
 tcpdump -nnei any -c 100 -w 100packets.pcap
 tcpdump: listening on any, link-type LINUX_SLL (Linux cooked v1), capture size 262144 bytes
 100 packets captured
 178 packets received by filter
 0 packets dropped by kernel
+```
