@@ -4,7 +4,6 @@ https://ibb.co/xhTgZm6
 ```
 ```
 https://ibb.co/DpWfFD3
-
 ```
 
 2. Установите Google authenticator на мобильный телефон. Настройте вход в Bitwarden аккаунт через Google authenticator OTP
