@@ -134,3 +134,25 @@ Welcome to Ubuntu 20.04.2 LTS (GNU/Linux 5.4.0-80-generic x86_64)
 ...
 vagrant@VM2:~$
 ```
+Переименуйте файлы ключей из задания 5. Настройте файл конфигурации SSH клиента, так чтобы вход на удаленный сервер осуществлялся по имени сервера.
+```
+vagrant@netologyVM1:~$ sudo mv ~/.ssh/id_rsa ~/.ssh/id_rsa_netology
+vagrant@netologyVM1:~$ sudo nano ~/.ssh/config
+Host netologyVM2
+        HostName 172.28.128.60
+        User vagrant
+        Port 22
+        IdentityFile ~/.ssh/id_rsa_netology
+vagrant@netologyVM1:~$ ssh netologyVM2
+Welcome to Ubuntu 20.04.2 LTS (GNU/Linux 5.4.0-80-generic x86_64)
+....
+vagrant@netologyVM2:~$
+```
+Соберите дамп трафика утилитой tcpdump в формате pcap, 100 пакетов. Откройте файл pcap в Wireshark.
+```
+tcpdump -nnei any -c 100 -w 100packets.pcap
+tcpdump: listening on any, link-type LINUX_SLL (Linux cooked v1), capture size 262144 bytes
+100 packets captured
+178 packets received by filter
+0 packets dropped by kernel
+```
