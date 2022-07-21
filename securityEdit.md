@@ -1,13 +1,13 @@
-1.Установите Bitwarden плагин для браузера. Зарегистрируйтесь и сохраните несколько паролей.
+1. Установите Bitwarden плагин для браузера. Зарегистрируйтесь и сохраните несколько паролей.
 ```
 выполнено
 ```
 
-2.Установите Google authenticator на мобильный телефон. Настройте вход в Bitwarden аккаунт через Google authenticator OTP
+2. Установите Google authenticator на мобильный телефон. Настройте вход в Bitwarden аккаунт через Google authenticator OTP
 ```
 выполнено
 ```
-3.Установите apache2, сгенерируйте самоподписанный сертификат, настройте тестовый сайт для работы по HTTPS.
+3. Установите apache2, сгенерируйте самоподписанный сертификат, настройте тестовый сайт для работы по HTTPS.
 ```
 sudo apt install apache2
 sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
@@ -85,7 +85,7 @@ sudo a2enconf ssl-params
 sudo apache2ctl configtest
 sudo systemctl restart apache2
 ```
-4.Проверьте на TLS уязвимости произвольный сайт в интернете.
+4. Проверьте на TLS уязвимости произвольный сайт в интернете.
 
 ```
 docker run --rm -ti  drwetter/testssl.sh -U --sneaky https://ya.ru
@@ -121,7 +121,7 @@ Further IP addresses:   2a02:6b8::2:242
  Winshock (CVE-2014-6321), experimental    not vulnerable (OK)
  RC4 (CVE-2013-2566, CVE-2015-2808)        no RC4 ciphers detected (OK)
  ```
- 5.Установите на Ubuntu ssh сервер, сгенерируйте новый приватный ключ. Скопируйте свой публичный ключ на другой сервер. Подключитесь к серверу по SSH-ключу.
+ 5. Установите на Ubuntu ssh сервер, сгенерируйте новый приватный ключ. Скопируйте свой публичный ключ на другой сервер. Подключитесь к серверу по SSH-ключу.
  ```
  vagrant@VM1:~$ ssh-keygen
 Generating public/private rsa key pair.
@@ -134,7 +134,7 @@ Welcome to Ubuntu 20.04.2 LTS (GNU/Linux 5.4.0-80-generic x86_64)
 ...
 vagrant@VM2:~$
 ```
-6.Переименуйте файлы ключей из задания 5. Настройте файл конфигурации SSH клиента, так чтобы вход на удаленный сервер осуществлялся по имени сервера.
+6. Переименуйте файлы ключей из задания 5. Настройте файл конфигурации SSH клиента, так чтобы вход на удаленный сервер осуществлялся по имени сервера.
 ```
 vagrant@netologyVM1:~$ sudo mv ~/.ssh/id_rsa ~/.ssh/id_rsa_netology
 vagrant@netologyVM1:~$ sudo nano ~/.ssh/config
@@ -148,7 +148,7 @@ Welcome to Ubuntu 20.04.2 LTS (GNU/Linux 5.4.0-80-generic x86_64)
 ....
 vagrant@netologyVM2:~$
 ```
-7.Соберите дамп трафика утилитой tcpdump в формате pcap, 100 пакетов. Откройте файл pcap в Wireshark.
+7. Соберите дамп трафика утилитой tcpdump в формате pcap, 100 пакетов. Откройте файл pcap в Wireshark.
 ```
 tcpdump -nnei any -c 100 -w 100packets.pcap
 tcpdump: listening on any, link-type LINUX_SLL (Linux cooked v1), capture size 262144 bytes
