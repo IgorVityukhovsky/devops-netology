@@ -2,3 +2,8 @@
 ```
 выполнено
 ```
+
+Установите Google authenticator на мобильный телефон. Настройте вход в Bitwarden аккаунт через Google authenticator OTP
+```
+выполнено
+```
