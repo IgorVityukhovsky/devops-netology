@@ -2,14 +2,14 @@
 
 ![1](https://user-images.githubusercontent.com/104152730/180422769-f3e25bd0-7525-4ee8-9721-0a59f916e2b5.png)
 
-```
-https://ibb.co/DpWfFD3
-```
+![2](https://user-images.githubusercontent.com/104152730/180422909-0d0de03f-f73e-4ae2-8f32-c5893c2f748c.png)
+
 
 2. Установите Google authenticator на мобильный телефон. Настройте вход в Bitwarden аккаунт через Google authenticator OTP
-```
-https://ibb.co/Y3pK1QT
-```
+
+![3](https://user-images.githubusercontent.com/104152730/180422966-66e22575-85a8-4789-90c9-3879f21573f9.png)
+
+
 3. Установите apache2, сгенерируйте самоподписанный сертификат, настройте тестовый сайт для работы по HTTPS.
 ```
 sudo apt install apache2
