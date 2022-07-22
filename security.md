@@ -1,7 +1,8 @@
 1. Установите Bitwarden плагин для браузера. Зарегистрируйтесь и сохраните несколько паролей.
 ```
-https://ibb.co/xhTgZm6
-```
+
+```![1](https://user-images.githubusercontent.com/104152730/180422769-f3e25bd0-7525-4ee8-9721-0a59f916e2b5.png)
+
 ```
 https://ibb.co/DpWfFD3
 ```
