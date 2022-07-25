@@ -57,7 +57,19 @@ done
 
 ### Ваш скрипт:
 ```bash
-???
+#!/usr/bin/env bash
+declare -i a
+a=0
+while (($a<5))
+do 
+curl 192.168.0.1:80
+echo $? >> curl.log
+curl 173.194.222.113:80
+echo $? >> curl.log
+curl 87.250.250.242:80
+echo $? >> curl.log
+let "a +=1"
+done
 ```
 
 ## Обязательная задача 4
@@ -65,7 +77,20 @@ done
 
 ### Ваш скрипт:
 ```bash
-???
+#!/usr/bin/env bash
+ip_array=(192.168.0.1:80 173.194.222.113:80 87.250.250.242:80)
+while ((1==1))
+  do
+  for i in ${ip_array[@]}
+    do
+    curl $i
+    if (($? != 0))
+      then
+      echo $i > error
+    fi
+  done
+done
+
 ```
 
 ## Дополнительное задание (со звездочкой*) - необязательно к выполнению
