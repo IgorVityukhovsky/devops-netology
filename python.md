@@ -37,7 +37,16 @@ for result in result_os.split('\n'):
 
 ### Ваш скрипт:
 ```python
-???
+#!/usr/bin/env python3
+import os
+from os.path import expanduser
+home = expanduser("~")
+bash_command = ["cd ~/devops-netology/", "git status"]
+result_os = os.popen(' && '.join(bash_command)).read()
+for result in result_os.split('\n'):
+    if result.find('modified') != -1:
+        prepare_result = result.replace('\tmodified:   ', '')
+        print(f'{home}/devops-netology/{prepare_result}')
 ```
 
 ### Вывод скрипта при запуске при тестировании:
