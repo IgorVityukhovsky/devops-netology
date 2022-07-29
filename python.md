@@ -60,12 +60,34 @@ vagrant@vagrant:~/devops-netology$ python3 script.py
 
 ### Ваш скрипт:
 ```python
-???
+#!/usr/bin/env python3
+import os
+import sys
+import subprocess
+
+git_dir = sys.argv[1]
+bash_command = ["cd " + git_dir, "git status"]
+os.chdir(git_dir)
+with subprocess.Popen(['git', 'status'], stdout=subprocess.PIPE) as proc:
+    result = proc.stdout.read().decode("utf-8")
+if result.find('not') == -1:
+    print('Данная директория не содержит репозитория!')
+else:
+  result_os =  os.popen(' && '.join(bash_command)).read()
+  for result in result_os.split('\n'):
+      if result.find('modified') != -1:
+          prepare_result = result.replace('\tmodified:   ', '')
+          print(f'{git_dir}{prepare_result}')
 ```
 
 ### Вывод скрипта при запуске при тестировании:
 ```
-???
+vagrant@vagrant:~/devops-netology$ python3 script2.py /home/vagrant
+fatal: not a git repository (or any of the parent directories): .git
+Данная директория не содержит репозитория!
+vagrant@vagrant:~/devops-netology$ python3 script2.py /home/vagrant/devops-netology
+/home/vagrant/devops-netologytest.txt
+vagrant@vagrant:~/devops-netology$
 ```
 
 ## Обязательная задача 4
