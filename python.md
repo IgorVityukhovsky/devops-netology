@@ -87,7 +87,6 @@ fatal: not a git repository (or any of the parent directories): .git
 Данная директория не содержит репозитория!
 vagrant@vagrant:~/devops-netology$ python3 script2.py /home/vagrant/devops-netology
 /home/vagrant/devops-netologytest.txt
-vagrant@vagrant:~/devops-netology$
 ```
 
 ## Обязательная задача 4
