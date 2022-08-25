@@ -32,9 +32,6 @@
 
 *Приложить вывод команд установленных версий каждой из программ, оформленный в markdown.*
 
-https://radikal.host/i/Icgjm
-
-https://ibb.co/vwJ3ckz
 
 ![Image](https://i.ibb.co/X2z7WtJ/Vagrant-Ansible-Virtualbox.png)
 
