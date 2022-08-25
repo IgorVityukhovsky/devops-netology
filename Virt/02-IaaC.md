@@ -32,7 +32,7 @@
 
 *Приложить вывод команд установленных версий каждой из программ, оформленный в markdown.*
 
-
+https://radikal.host/i/Icgjm
 
 ![Alt-текст](https://radikal.host/i/Icgjm "Орк")
 
