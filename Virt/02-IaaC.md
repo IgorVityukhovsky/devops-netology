@@ -34,7 +34,7 @@
 
 https://radikal.host/i/Icgjm
 
-![Alt-текст](https://radikal.host/i/Icgjm "Орк")
+![](https://radikal.host/i/Icgjm)
 
 ## Задача 4 (*)
 
