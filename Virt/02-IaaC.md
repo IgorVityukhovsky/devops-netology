@@ -32,7 +32,9 @@
 
 *Приложить вывод команд установленных версий каждой из программ, оформленный в markdown.*
 
-(https://avatars1.githubusercontent.com/u/5384215?v=3&s=460)
+
+
+![Alt-текст](https://radikal.host/i/Icgjm "Орк")
 
 ## Задача 4 (*)
 
