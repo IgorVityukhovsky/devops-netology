@@ -36,7 +36,7 @@ https://radikal.host/i/Icgjm
 
 https://ibb.co/vwJ3ckz
 
-![](https://i.ibb.co/X2z7WtJ/Vagrant-Ansible-Virtualbox.png)
+![Image](https://i.ibb.co/X2z7WtJ/Vagrant-Ansible-Virtualbox.png)
 
 ## Задача 4 (*)
 
