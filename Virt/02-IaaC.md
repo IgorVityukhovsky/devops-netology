@@ -34,7 +34,7 @@
 
 https://radikal.host/i/Icgjm
 
-![](https://radikal.host/i/Icgjm)
+![123](https://radikal.host/i/Icgjm)
 
 ## Задача 4 (*)
 
