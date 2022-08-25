@@ -32,7 +32,7 @@
 
 *Приложить вывод команд установленных версий каждой из программ, оформленный в markdown.*
 
-!(https://avatars1.githubusercontent.com/u/5384215?v=3&s=460)
+(https://avatars1.githubusercontent.com/u/5384215?v=3&s=460)
 
 ## Задача 4 (*)
 
