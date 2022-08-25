@@ -36,7 +36,7 @@ https://radikal.host/i/Icgjm
 
 https://ibb.co/vwJ3ckz
 
-![](https://ibb.co/vwJ3ckz)
+![Alt-текст](https://ibb.co/vwJ3ckz "123")
 
 ## Задача 4 (*)
 
