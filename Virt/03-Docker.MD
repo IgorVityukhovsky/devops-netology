@@ -81,6 +81,26 @@ docker run -p 80:80 igorvit/netology:netology
 - Добавьте еще один файл в папку ```/data``` на хостовой машине;
 - Подключитесь во второй контейнер и отобразите листинг и содержание файлов в ```/data``` контейнера.
 
+
+### Ответ:
+```
+sudo mkdir /data
+sudo chmod 666 /data
+docker run --name=centos -t -d -v /data:/data centos
+docker run --name=debian -t -d -v /data:/data debian
+docker exec -it centos /bin/bash
+echo "123" > /data/123.txt
+exit
+sudo su
+echo "456" > /data/456.txt
+docker exec -it debian /bin/bash
+cd /data
+```
+```
+root@ddae0e0d72ab:/data# ls
+123.txt  456.txt
+```
+
 ## Задача 4 (*)
 
 Воспроизвести практическую часть лекции самостоятельно.
