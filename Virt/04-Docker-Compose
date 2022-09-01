@@ -70,4 +70,7 @@ packer init config.pkr.hcl
 packer build centos-7-base.json
 
 
+yc compute image list
+See that image created
+
 
