@@ -73,4 +73,68 @@ packer build centos-7-base.json
 yc compute image list
 See that image created
 
+in terraform/variables.tf change ID on my
+
+Unstall terraform
+
+sudo apt install snapd
+sudo apt update
+sudo snap install terraform --classic
+
+create service account (for example in web-interface yandex cloude)
+check:
+yc iam service-account --folder-id <ID каталога> list
+
+Создайте авторизованный ключ для сервисного аккаунта и сохраните его в файл key.json
+cd terraform
+yc iam key create --service-account-name default-sa --output key.json --folder-id <ID каталога>
+
+yc config profile create sa-profile
+yc config set service-account-key key.json
+
+check:
+yc config list
+
+yc config set cloud-id <ID облака>
+yc config set folder-id <ID каталога>
+
+before creating VM without terraform need delete temp lan for packer:
+yc vpc subnet delete --name my-subnet-a && yc vpc network delete --name net
+
+settings terraform:
+cd terraform
+nano ~/.terraformrc
+
+provider_installation {
+  network_mirror {
+    url = "https://terraform-mirror.yandexcloud.net/"
+    include = ["registry.terraform.io/*/*"]
+  }
+  direct {
+    exclude = ["registry.terraform.io/*/*"]
+  }
+}
+
+terraform init
+
+in key.json copy line "public key" in file .ssh/id_rsa.pub
+Don't forget, that simbol "\n" it is a new line
+
+#in key.json copy line "private key" in file .ssh/id_rsa
+#Don't forget, that simbol "\n" it is a new line
+#cd .ssh
+#sudo chmod 600 id_rsa
+
+
+terraform plan
+terraform apply -auto-approve
+(paste screeshot)
+
+paste external IP in file /ansible/inventory
+
+cd
+cd ansible
+ansible-playbook provision.yml
+
+Doesnt work becouse ssh keys not identity. Check ssh keys generation
 
