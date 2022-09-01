@@ -16,7 +16,7 @@ sudo nano centos-7-base.json
   "builders": [
     {
       "disk_type": "network-nvme",
-      "folder_id": "b1gaec42k169jqpo02f7",
+      "folder_id": "b1gaec42k169jqpo02f7", #Change for my
       "image_description": "by packer",
       "image_family": "centos",
       "image_name": "centos-7-base",
