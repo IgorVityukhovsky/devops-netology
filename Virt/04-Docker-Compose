@@ -2,6 +2,8 @@ curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
 
 restart bash
 
+install yc
+
 yc init
 
 #for get token https://oauth.yandex.ru/authorize?response_type=token&client_id=1a6990aa636648e9b2ef855fa7bec2fb
@@ -10,20 +12,23 @@ yc compute image list
 
 mkdir packer
 cd packer
+
+yc vpc network create --name net && yc vpc subnet create --name my-subnet-a --zone ru-central1-a --range 10.1.2.0/24 --network-name net --description "my first subnet via yc"
+
 sudo nano centos-7-base.json
 
 {
   "builders": [
     {
       "disk_type": "network-nvme",
-      "folder_id": "b1gaec42k169jqpo02f7", #Change for my
+      "folder_id": "b1gaec42k169jqpo02f7",         #Change for my
       "image_description": "by packer",
       "image_family": "centos",
       "image_name": "centos-7-base",
       "source_image_family": "centos-7",
       "ssh_username": "centos",
-      "subnet_id": "e9b28580oai8e7qo4p13",
-      "token": "",
+      "subnet_id": "e9b28580oai8e7qo4p13",         #Change for my 
+      "token": "",                                 #Change for my
       "type": "yandex",
       "use_ipv4_nat": true,
       "zone": "ru-central1-a"
@@ -39,6 +44,30 @@ sudo nano centos-7-base.json
     }
   ]
 }
+
+install packer:
+
+Install VPN plugin for browser
+Dawnloaded binary file with official sute
+Copy in $PATH
+sudo mv ~/Downloads/packer /usr/local/bin/
+restart bash
+
+In packer folders create file config.pkr.hcl
+
+packer {
+  required_plugins {
+    yandex = {
+      version = ">= 1.1.2"
+      source  = "github.com/hashicorp/yandex"
+    }
+  }
+}
+
+cd packer
+packer init config.pkr.hcl
+
+packer build centos-7-base.json
 
 
 
