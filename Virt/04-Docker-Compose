@@ -148,4 +148,4 @@ login in VM node01
 ssh centos@IP
 
 connected in docker container with prometheus
-docker exec -it ID /bin/bash
+docker exec -it ID /bin/sh
