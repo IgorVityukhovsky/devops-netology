@@ -131,5 +131,14 @@ cd
 cd ansible
 ansible-playbook provision.yml
 
-Doesnt work becouse ssh keys not identity. Check ssh keys generation
+For task 4
+
+created node02.tf
+changed output.tf (add node02)
+
+terraform apply -auto-approve
+
+
+
+
 
