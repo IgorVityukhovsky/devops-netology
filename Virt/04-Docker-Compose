@@ -139,6 +139,7 @@ changed output.tf (add node02)
 terraform apply -auto-approve
 
 
+Add node02 in inventory file
+Add host node02 in provision.yml with different docker-compouse file
 
-
-
+ansible-playbook provision.yml
