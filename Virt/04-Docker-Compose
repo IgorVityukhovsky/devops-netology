@@ -143,3 +143,9 @@ Add node02 in inventory file
 Add host node02 in provision.yml with different docker-compouse file
 
 ansible-playbook provision.yml
+
+login in VM node01
+ssh centos@IP
+
+connected in docker container with prometheus
+docker exec -it ID /bin/bash
