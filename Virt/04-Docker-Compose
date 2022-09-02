@@ -117,13 +117,8 @@ provider_installation {
 
 terraform init
 
-in key.json copy line "public key" in file .ssh/id_rsa.pub
-Don't forget, that simbol "\n" it is a new line
-
-#in key.json copy line "private key" in file .ssh/id_rsa
-#Don't forget, that simbol "\n" it is a new line
-#cd .ssh
-#sudo chmod 600 id_rsa
+generate ssh-keys for nodes:
+ssh-keygen
 
 
 terraform plan
