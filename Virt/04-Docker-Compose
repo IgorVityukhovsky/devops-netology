@@ -147,8 +147,17 @@ ansible-playbook provision.yml
 login in VM node01
 ssh centos@IP
 
-connected in docker container with prometheus
-docker exec -it ID /bin/sh
+sudo yum install nano
 
-cd /
-cd /etc/prometheus/
+sudo docker cp 2f1fa28d950b:/etc/prometheus/prometheus.yml /home/centos
+
+sudo nano prometheus.yml
+
+add nodeexporter2 IP:port
+sudo docker cp /home/centos/prometheus.yml 2f1fa28d950b:/etc/prometheus/
+
+#connected in docker container with prometheus
+#sudo docker exec -it ID /bin/sh
+
+curl -X POST http://admin:admin@51.250.87.218:9090/-/reload
+
