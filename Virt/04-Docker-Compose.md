@@ -161,7 +161,7 @@ ansible-playbook provision.yml
 ```
 Получаем настроенную графану
 #Скриншот с графаной
-![Image](https://i.ibb.co/47dKPYt/node01.png)
+![Image](https://i.ibb.co/hHnjwr0/Grafana.png)
 
 ## **Задача 4**
 
@@ -212,7 +212,7 @@ curl -X POST http://admin:admin@51.250.87.218:9090/-/reload
 В интерфейсе видим нашу вторую ноду nodeexporter2
 
 #Скриншот
-![Image](https://i.ibb.co/X2z7WtJ/Vagrant-Ansible-Virtualbox.png)
+![Image](https://i.ibb.co/23fcwCM/node2.png)
 
 
 
