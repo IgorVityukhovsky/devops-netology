@@ -61,8 +61,7 @@ sudo nano centos-7-base.json
 ```
 Установим Packer.
 
-В нынешней ситуации установил VPN плагин для браузера, скачал файл с официального сайта.
-Скопировать в $PATH
+В нынешней ситуации установил VPN плагин для браузера, скачал файл с официального сайта. Скопировал в $PATH
 ```
 sudo mv ~/Downloads/packer /usr/local/bin/
 ```
@@ -102,6 +101,7 @@ sudo apt update
 sudo snapd install terraform --classic
 ```
 Создаём сервисный аккаунт (например в веб-интерфейсе яндекса)
+
 Проверяем
 ```
 yc iam service-account --folder-id <ID каталога> list
@@ -160,33 +160,59 @@ cd
 cd ansible
 ansible-playbook provision.yml
 ```
+Получаем настроенную графану
+#Скриншот с графаной
+
 **Задача 4**
 
-created node02.tf
-changed output.tf (add node02)
+Создаём файл node02.tf
+Изменяем output.tf добавляем туда вывод информации о второй ноде
 
+Запускаем терраформ, он пересоздаёт первую ноду и добавляет вторую
+```
 terraform apply -auto-approve
-
-
-Add node02 in inventory file
-Add host node02 in provision.yml with different docker-compouse file
-
+```
+Добавляем вторую ноду в файл inventory у Ansible
+Добавляем новый хост в provision.yml с другим docker-compouse file и запускаем Ansible. Он настроить первую ноду как графану с прометеусом, а вторую, как просто нод экспортер
+```
 ansible-playbook provision.yml
-
-login in VM node01
+```
+Заходим на первую ноду:
+```
 ssh centos@IP
-
+```
+Установим текстовый редактор
+```
 sudo yum install nano
-
+```
+Скопируем конфиг с настройками прометеуса из докер контейнера
+```
 sudo docker cp 2f1fa28d950b:/etc/prometheus/prometheus.yml /home/centos
-
+```
+Откроем его на редактирование
+```
 sudo nano prometheus.yml
-
-add nodeexporter2 IP:port
+```
+В настройках добавим джоб nodeexporter2 с нашими IP:port второй ноды, а затем скопируем этот конфиг обратно в контейнер
+```
 sudo docker cp /home/centos/prometheus.yml 2f1fa28d950b:/etc/prometheus/
+```
+Можем зайти в контейнер и убедиться, что файл перезаписался
+```
+sudo docker exec -it ID /bin/sh
+cat /etc/prometheus/prometheus.yml
+```
+С любой машины отправим запрос Прометеусу, что бы перечитал конфиг
+```
+curl -X POST http://admin:admin@51.250.87.218:9090/-/reload
+```
+Скачаем с официального сайта графаны дашборд с ID 11074, в веб интерфейсе графаны импортируем JSON файл.
 
-#connected in docker container with prometheus
+В интерфейсе видим нашу вторую ноду nodeexporter2
+
+#Скриншот
+
+
 #sudo docker exec -it ID /bin/sh
 
-curl -X POST http://admin:admin@51.250.87.218:9090/-/reload
 
