@@ -12,6 +12,7 @@ install yc
 yc init
 ```
 Во время инициализации нужно будет перейти по ссылке в инструкции из терминала, что бы получить токен, либо найти самостоятельно
+
 Убеждаемся, что у нас пока нет образов в облаке яндекса
 ```
 yc compute image list
@@ -34,14 +35,14 @@ sudo nano centos-7-base.json
   "builders": [
     {
       "disk_type": "network-nvme",
-      "folder_id": "b1gaec42k169jqpo02f7",         #Change for my
+      "folder_id": "b1gaec42k169jqpo02f7",         Изменить значение на своё
       "image_description": "by packer",
       "image_family": "centos",
       "image_name": "centos-7-base",
       "source_image_family": "centos-7",
       "ssh_username": "centos",
-      "subnet_id": "e9b28580oai8e7qo4p13",         #Change for my 
-      "token": "",                                 #Change for my
+      "subnet_id": "e9b28580oai8e7qo4p13",         Изменить значение на своё 
+      "token": "",                                 Изменить значение на своё
       "type": "yandex",
       "use_ipv4_nat": true,
       "zone": "ru-central1-a"
@@ -58,16 +59,17 @@ sudo nano centos-7-base.json
   ]
 }
 ```
-install packer:
+Установим Packer.
 
-Install VPN plugin for browser
-Dawnloaded binary file with official sute
-Copy in $PATH
+В нынешней ситуации установил VPN плагин для браузера, скачал файл с официального сайта.
+Скопировать в $PATH
+```
 sudo mv ~/Downloads/packer /usr/local/bin/
-restart bash
+```
+Перезапускаем bash терминал 
 
-In packer folders create file config.pkr.hcl
-
+В дирректории Packer создаём файл config.pkr.hcl с содержимым
+```
 packer {
   required_plugins {
     yandex = {
@@ -76,48 +78,58 @@ packer {
     }
   }
 }
-
+```
+Инициализируем, собираем образз, проверяем, что он создался и лежит в нашем яндекс облаке
+```
 cd packer
 packer init config.pkr.hcl
-
 packer build centos-7-base.json
-
-
 yc compute image list
-See that image created
+```
 
-in terraform/variables.tf change ID on my
+#Сюда вставить скриншот с образом пекера
 
-Unstall terraform
 
+
+В terraform/variables.tf меняем ID на свой
+
+Установка Terraform.
+
+Установил пакетный менеджер snapd и установил с помощью него, так как он подкачивает и настраивает все необходимые зависимости
+```
 sudo apt install snapd
 sudo apt update
-sudo snap install terraform --classic
-
-create service account (for example in web-interface yandex cloude)
-check:
+sudo snapd install terraform --classic
+```
+Создаём сервисный аккаунт (например в веб-интерфейсе яндекса)
+Проверяем
+```
 yc iam service-account --folder-id <ID каталога> list
+```
 
-Создайте авторизованный ключ для сервисного аккаунта и сохраните его в файл key.json
+Создаём авторизованный ключ для сервисного аккаунта и сохраняем его в файл key.json
+```
 cd terraform
 yc iam key create --service-account-name default-sa --output key.json --folder-id <ID каталога>
-
 yc config profile create sa-profile
 yc config set service-account-key key.json
-
-check:
+```
+Проверим:
+```
 yc config list
-
 yc config set cloud-id <ID облака>
 yc config set folder-id <ID каталога>
-
-before creating VM without terraform need delete temp lan for packer:
+```
+Перед созданием виртуальных машин с помощью Terraform, удаляем временную сеть, которую мы создавали для Packer
+```
 yc vpc subnet delete --name my-subnet-a && yc vpc network delete --name net
-
-settings terraform:
+```
+Настраиваем terraform:
+```
 cd terraform
 nano ~/.terraformrc
-
+```
+```
 provider_installation {
   network_mirror {
     url = "https://terraform-mirror.yandexcloud.net/"
@@ -127,24 +139,28 @@ provider_installation {
     exclude = ["registry.terraform.io/*/*"]
   }
 }
-
+```
+```
 terraform init
-
-generate ssh-keys for nodes:
+```
+Генерируем ssh ключи для наших нод:
+```
 ssh-keygen
-
-
+```
+Проверяем, что собирается создать Terraform и запускаем
+```
 terraform plan
 terraform apply -auto-approve
-(paste screeshot)
+```
+#Вставить скриншот со свойствами виртуальной ноды 1
 
-paste external IP in file /ansible/inventory
-
+Подставляем внешние IP в /ansible/inventory и запускаем
+```
 cd
 cd ansible
 ansible-playbook provision.yml
-
-For task 4
+```
+**Задача 4**
 
 created node02.tf
 changed output.tf (add node02)
