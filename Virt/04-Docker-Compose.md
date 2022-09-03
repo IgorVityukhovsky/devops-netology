@@ -87,7 +87,7 @@ yc compute image list
 ```
 #Сюда вставить скриншот с образом пекера
 
-![Image](https://ibb.co/ZdrnbFP)
+![Image](https://i.ibb.co/8MwWQfp/Packer-images.png)
 
 В terraform/variables.tf меняем ID на свой
 
