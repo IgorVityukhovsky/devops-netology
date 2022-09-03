@@ -3,7 +3,7 @@
 ```
 curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
 ```
-Переоткрываем bash терминал
+Переоткрываем bash терминал, выполняем установку
 ```
 install yc
 ```
@@ -85,10 +85,7 @@ packer init config.pkr.hcl
 packer build centos-7-base.json
 yc compute image list
 ```
-
 #Сюда вставить скриншот с образом пекера
-
-
 
 В terraform/variables.tf меняем ID на свой
 
@@ -106,7 +103,6 @@ sudo snapd install terraform --classic
 ```
 yc iam service-account --folder-id <ID каталога> list
 ```
-
 Создаём авторизованный ключ для сервисного аккаунта и сохраняем его в файл key.json
 ```
 cd terraform
@@ -163,7 +159,7 @@ ansible-playbook provision.yml
 Получаем настроенную графану
 #Скриншот с графаной
 
-**Задача 4**
+##**Задача 4**
 
 Создаём файл node02.tf
 Изменяем output.tf добавляем туда вывод информации о второй ноде
@@ -173,6 +169,7 @@ ansible-playbook provision.yml
 terraform apply -auto-approve
 ```
 Добавляем вторую ноду в файл inventory у Ansible
+
 Добавляем новый хост в provision.yml с другим docker-compouse file и запускаем Ansible. Он настроить первую ноду как графану с прометеусом, а вторую, как просто нод экспортер
 ```
 ansible-playbook provision.yml
@@ -199,7 +196,7 @@ sudo docker cp /home/centos/prometheus.yml 2f1fa28d950b:/etc/prometheus/
 ```
 Можем зайти в контейнер и убедиться, что файл перезаписался
 ```
-sudo docker exec -it ID /bin/sh
+sudo docker exec -it ID-контейнера /bin/sh
 cat /etc/prometheus/prometheus.yml
 ```
 С любой машины отправим запрос Прометеусу, что бы перечитал конфиг
@@ -212,7 +209,5 @@ curl -X POST http://admin:admin@51.250.87.218:9090/-/reload
 
 #Скриншот
 
-
-#sudo docker exec -it ID /bin/sh
 
 
