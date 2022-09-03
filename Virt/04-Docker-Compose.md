@@ -3,23 +3,33 @@
 ```
 curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
 ```
-restart bash
-
+Переоткрываем bash терминал
+```
 install yc
-
+```
+Инициализируем
+```
 yc init
-
-#for get token https://oauth.yandex.ru/authorize?response_type=token&client_id=1a6990aa636648e9b2ef855fa7bec2fb
-
+```
+Во время инициализации нужно будет перейти по ссылке в инструкции из терминала, что бы получить токен, либо найти самостоятельно
+Убеждаемся, что у нас пока нет образов в облаке яндекса
+```
 yc compute image list
-
+```
+Создаём директорию для Packer
+```
 mkdir packer
 cd packer
-
+```
+Создаём сеть в яндекс облаке
+```
 yc vpc network create --name net && yc vpc subnet create --name my-subnet-a --zone ru-central1-a --range 10.1.2.0/24 --network-name net --description "my first subnet via yc"
-
+```
+Создаём файл на основе которого будет происходить сборка образа
+```
 sudo nano centos-7-base.json
-
+```
+```
 {
   "builders": [
     {
@@ -47,7 +57,7 @@ sudo nano centos-7-base.json
     }
   ]
 }
-
+```
 install packer:
 
 Install VPN plugin for browser
