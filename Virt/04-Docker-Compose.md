@@ -86,7 +86,8 @@ packer build centos-7-base.json
 yc compute image list
 ```
 #Сюда вставить скриншот с образом пекера
-![Image]([https://i.ibb.co/X2z7WtJ/Vagrant-Ansible-Virtualbox.png](https://ibb.co/ZdrnbFP))
+
+![Image](https://ibb.co/ZdrnbFP)
 
 В terraform/variables.tf меняем ID на свой
 
