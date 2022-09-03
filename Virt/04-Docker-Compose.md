@@ -86,6 +86,7 @@ packer build centos-7-base.json
 yc compute image list
 ```
 #Сюда вставить скриншот с образом пекера
+![Image]([https://i.ibb.co/X2z7WtJ/Vagrant-Ansible-Virtualbox.png](https://ibb.co/ZdrnbFP))
 
 В terraform/variables.tf меняем ID на свой
 
@@ -149,6 +150,7 @@ terraform plan
 terraform apply -auto-approve
 ```
 #Вставить скриншот со свойствами виртуальной ноды 1
+![Image](https://i.ibb.co/X2z7WtJ/Vagrant-Ansible-Virtualbox.png)
 
 Подставляем внешние IP в /ansible/inventory и запускаем
 ```
@@ -158,6 +160,7 @@ ansible-playbook provision.yml
 ```
 Получаем настроенную графану
 #Скриншот с графаной
+![Image](https://i.ibb.co/X2z7WtJ/Vagrant-Ansible-Virtualbox.png)
 
 ## **Задача 4**
 
@@ -208,6 +211,7 @@ curl -X POST http://admin:admin@51.250.87.218:9090/-/reload
 В интерфейсе видим нашу вторую ноду nodeexporter2
 
 #Скриншот
+![Image](https://i.ibb.co/X2z7WtJ/Vagrant-Ansible-Virtualbox.png)
 
 
 
