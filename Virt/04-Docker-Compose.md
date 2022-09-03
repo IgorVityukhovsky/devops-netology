@@ -149,8 +149,6 @@ ssh-keygen
 terraform plan
 terraform apply -auto-approve
 ```
-#Вставить скриншот со свойствами виртуальной ноды 1
-
 ![Image](https://i.ibb.co/47dKPYt/node01.png)
 
 Подставляем внешние IP в /ansible/inventory и запускаем
@@ -160,12 +158,13 @@ cd ansible
 ansible-playbook provision.yml
 ```
 Получаем настроенную графану
-#Скриншот с графаной
+
 ![Image](https://i.ibb.co/hHnjwr0/Grafana.png)
 
 ## **Задача 4**
 
 Создаём файл node02.tf
+
 Изменяем output.tf добавляем туда вывод информации о второй ноде
 
 Запускаем терраформ, он пересоздаёт первую ноду и добавляет вторую
@@ -211,7 +210,6 @@ curl -X POST http://admin:admin@51.250.87.218:9090/-/reload
 
 В интерфейсе видим нашу вторую ноду nodeexporter2
 
-#Скриншот
 ![Image](https://i.ibb.co/23fcwCM/node2.png)
 
 
