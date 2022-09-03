@@ -150,7 +150,8 @@ terraform plan
 terraform apply -auto-approve
 ```
 #Вставить скриншот со свойствами виртуальной ноды 1
-![Image](https://i.ibb.co/X2z7WtJ/Vagrant-Ansible-Virtualbox.png)
+
+![Image](https://i.ibb.co/47dKPYt/node01.png)
 
 Подставляем внешние IP в /ansible/inventory и запускаем
 ```
