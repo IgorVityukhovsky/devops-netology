@@ -1,7 +1,8 @@
-#отформатировать
+Устанавливаем утилиту яндекс-клауда **yc**
 
+```
 curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
-
+```
 restart bash
 
 install yc
