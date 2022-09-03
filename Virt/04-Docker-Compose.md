@@ -85,7 +85,6 @@ packer init config.pkr.hcl
 packer build centos-7-base.json
 yc compute image list
 ```
-#Сюда вставить скриншот с образом пекера
 
 ![Image](https://i.ibb.co/8MwWQfp/Packer-images.png)
 
@@ -161,7 +160,7 @@ ansible-playbook provision.yml
 ```
 Получаем настроенную графану
 #Скриншот с графаной
-![Image](https://i.ibb.co/X2z7WtJ/Vagrant-Ansible-Virtualbox.png)
+![Image](https://i.ibb.co/47dKPYt/node01.png)
 
 ## **Задача 4**
 
