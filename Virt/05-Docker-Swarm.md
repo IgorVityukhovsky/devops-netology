@@ -57,7 +57,10 @@ terraform init
 terraform plan
 terraform apply -auto-approve
 
-
+```
+docker node ls
+```
+#Past screenshot
 
 
 ## Задача 3
