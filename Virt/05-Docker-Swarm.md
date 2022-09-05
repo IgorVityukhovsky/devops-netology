@@ -27,11 +27,13 @@
 docker node ls
 ```
 
-Create network in YC
+Создаём временную сеть для Packer:
+```
 yc vpc network create --name net && yc vpc subnet create --name my-subnet-a --zone ru-central1-a --range 10.1.2.0/24 --network-name net --description "my first subnet via yc"
-
-Edit centos-7-base.json with my value
+```
+Правим centos-7-base.json на свои значения.
 В дирректории Packer создаём файл config.pkr.hcl с содержимым
+```
 packer {
   required_plugins {
     yandex = {
@@ -40,27 +42,30 @@ packer {
     }
   }
 }
+```
 
 Инициализируем, собираем образ, проверяем, что он создался и лежит в нашем яндекс облаке
+```
 cd packer
 packer init config.pkr.hcl
 packer build centos-7-base.json
 yc compute image list
-
-
-удаляем временную сеть, которую мы создавали для Packer
+```
+Удаляем временную сеть, которую мы создавали для Packer
+```
 yc vpc subnet delete --name my-subnet-a && yc vpc network delete --name net
-
-copy key.json, variables.tf (change ID image) in folder terraform from past homework
+```
+Копируем key.json, variables.tf (меняем ID image) в директорию терраформа из прошлого ДЗ
+```
 cd terraform
 terraform init
 terraform plan
 terraform apply -auto-approve
-
+```
 ```
 docker node ls
 ```
-#Past screenshot
+Вставить скриншот
 
 
 ## Задача 3
@@ -71,6 +76,7 @@ docker node ls
 ```
 docker service ls
 ```
+Вставить скриншот
 
 ## Задача 4 (*)
 
@@ -79,8 +85,6 @@ docker service ls
 # см.документацию: https://docs.docker.com/engine/swarm/swarm_manager_locking/
 docker swarm update --autolock=true
 ```
-
-
 Команда включает функцию автоблокировки и генерирует ключ, который администратор системы должен сохранить. Это значит, что при перезапуске Docker Swarm будет запрашиваться этот ключ в целях безопасности иначе Swarm не разблокируется.
 
 ---
