@@ -27,6 +27,39 @@
 docker node ls
 ```
 
+Create network in YC
+yc vpc network create --name net && yc vpc subnet create --name my-subnet-a --zone ru-central1-a --range 10.1.2.0/24 --network-name net --description "my first subnet via yc"
+
+Edit centos-7-base.json with my value
+В дирректории Packer создаём файл config.pkr.hcl с содержимым
+packer {
+  required_plugins {
+    yandex = {
+      version = ">= 1.1.2"
+      source  = "github.com/hashicorp/yandex"
+    }
+  }
+}
+
+Инициализируем, собираем образ, проверяем, что он создался и лежит в нашем яндекс облаке
+cd packer
+packer init config.pkr.hcl
+packer build centos-7-base.json
+yc compute image list
+
+
+удаляем временную сеть, которую мы создавали для Packer
+yc vpc subnet delete --name my-subnet-a && yc vpc network delete --name net
+
+copy key.json, variables.tf (change ID image) in folder terraform from past homework
+cd terraform
+terraform init
+terraform plan
+terraform apply -auto-approve
+
+
+
+
 ## Задача 3
 
 Создать ваш первый, готовый к боевой эксплуатации кластер мониторинга, состоящий из стека микросервисов.
