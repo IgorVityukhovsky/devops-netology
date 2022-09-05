@@ -65,7 +65,7 @@ terraform apply -auto-approve
 ```
 docker node ls
 ```
-Вставить скриншот
+![Image](https://i.ibb.co/kX4sMxg/docker-node-ls.png)
 
 
 ## Задача 3
@@ -76,7 +76,7 @@ docker node ls
 ```
 docker service ls
 ```
-Вставить скриншот
+![Image](https://i.ibb.co/J2tKb9c/docker-service-ls.png)
 
 ## Задача 4 (*)
 
