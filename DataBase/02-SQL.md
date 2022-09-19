@@ -298,3 +298,14 @@ cat /tmp/output-task5
      Filter: "(order_number IS NOT NULL)"
 (1 row)
 ```
+
+Задача 6.
+Подключаемся к контейнеру, даём права на директорию с бекапом, логинимся под пользователем postgres и выполняем бекап
+```
+docker exec -it homeworksql-mydb-1 bash
+chmod 777 /var/lib/postgresql/backup
+su postgress
+pg_dumpall > /var/lib/postgresql/backup/backup_netology
+```
+
+
