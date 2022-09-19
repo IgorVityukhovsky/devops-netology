@@ -28,6 +28,7 @@ services:
     ports:
       - "5432:5432"
     environment:
+      PGDATA: /var/lib/postgresql/data/
       POSTGRES_PASSWORD: example
 
     #restart:
