@@ -279,3 +279,22 @@ id |      last_name       | country | order_number
   3 | Иоганн Себастьян Бах | Japan   |            5
 (3 rows)
 ```
+Дирректива EXPLAIN позволяет узнать сколько времени будет выполняться запрос по мнению СУБД. Помогает при диагностики проблем и оптимизации
+```
+cat /tmp/output-task5
+```
+```
+ QUERY PLAN                
+------------------------------------------
+ - Plan:                                 +
+     Node Type: "Seq Scan"               +
+     Parallel Aware: false               +
+     Relation Name: "clients"            +
+     Alias: "clients"                    +
+     Startup Cost: 0.00                  +
+     Total Cost: 13.50                   +
+     Plan Rows: 348                      +
+     Plan Width: 204                     +
+     Filter: "(order_number IS NOT NULL)"
+(1 row)
+```
