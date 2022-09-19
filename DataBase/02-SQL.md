@@ -337,4 +337,28 @@ ls -lh
 total 8.0K
 -rw-r--r-- 1 postgres postgres 7.1K Sep 19 15:56 backup_netology
 ```
+Логинимся под postgres и восстанавливаем бекап
+```
+su postgres
+psql -f /var/lib/postgresql/backup/backup_netology
+```
+Заходим в СУБД и выводим список баз, что бы убедиться, что всё прошло успешно
+```
+psql -h localhost -p 5432 -U postgres -W
+*вводим пароль*
+postgres=# \l
+```
+```
+List of databases
+   Name    |  Owner   | Encoding |  Collate   |   Ctype    |   Access privileges   
+-----------+----------+----------+------------+------------+-----------------------
+ postgres  | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
+ template0 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+           |          |          |            |            | postgres=CTc/postgres
+ template1 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+           |          |          |            |            | postgres=CTc/postgres
+ test_db   | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
+(4 rows)
+```
+
 
