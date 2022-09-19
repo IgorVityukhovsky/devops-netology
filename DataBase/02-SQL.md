@@ -128,9 +128,11 @@ EXPLAIN (FORMAT YAML) SELECT * FROM clients WHERE order_number IS NOT NULL;
 
 
 
-Подключимся в контейнер и передадим содержимое скрипта Посгрессу
+Подключимся в контейнер, логинимся под дефолтным пользователем постгресса и запускаем скрипт
 ```
 docker exec -it homeworksql-mydb-1 bash
+psql -h localhost -p 5432 -U postgres -W
+*вводим пароль описанный в docker compose файле*
 psql -f /Script/StartScript
 
 ```
