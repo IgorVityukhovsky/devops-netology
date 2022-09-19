@@ -8,13 +8,14 @@ sudo apt-get install docker-compose-plugin
 ```
 docker compose version
 ```
-Создадим каталоги и дадим права
+Создадим каталоги и дадим права, если мы хотим, что бы Volume хранились в определённых местах
 ```
 sudo mkdir -p /var/lib/postgresql/data
 sudo mkdir -p /var/lib/postgresql/backup
-sudo chmod 666 /var/lib/postgresql/data
-sudo chmod 666 /var/lib/postgresql/backup
+sudo chmod 777 /var/lib/postgresql/data
+sudo chmod 777 /var/lib/postgresql/backup
 ```
+Для нашей тестовой задачи мы будем использовать дефолтные пути (/var/lib/docker/volumes/), поэтому предыдущий пункт не обязателен.
 
 Создадим docker compose file
 ```
@@ -51,4 +52,9 @@ docker compose up -d
 Проверим, что контейнер создался, запущен и работает
 ```
 docker compose ps
+```
+Подключимся в контейнер и проверим, что наши volume есть в системе
+```
+docker exec -it homeworksql-mydb-1 bash
+
 ```
