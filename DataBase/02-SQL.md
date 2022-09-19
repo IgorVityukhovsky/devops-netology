@@ -129,7 +129,7 @@ EXPLAIN (FORMAT YAML) SELECT * FROM clients WHERE order_number IS NOT NULL;
 
 
 
-Подключимся в контейнер, логинимся под дефолтным пользователем постгресса и запускаем скрипт
+Подключимся в контейнер и передаём скрипт
 ```
 docker exec -it homeworksql-mydb-1 bash
 psql -f /docker-entrypoint-initdb.d/StartScript -U postgres
