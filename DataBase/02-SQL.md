@@ -307,5 +307,34 @@ chmod 777 /var/lib/postgresql/backup
 su postgress
 pg_dumpall > /var/lib/postgresql/backup/backup_netology
 ```
+Удаляем контейнер, смотрим, какие у нас есть volume. 
+```
+docker compose down
+docker volume ls
 
+```
+```
+DRIVER    VOLUME NAME
+local     homeworksql_db-backup
+local     homeworksql_db-data
+```
+Имитируем потерю нашей базы удалив volume с ней.
+```
+docker volume rm homeworksql_db-data
+```
+Запускаем контейнер снова. В результате запустится контайнер с пустым volume под базу и с volume в котором хранится бекап
+```
+docker compose build
+docker compose up -d
+```
+Подключаемся к контейнеру и проверяем, что бекап на месте
+```
+docker exec -it homeworksql-mydb-1 bash
+cd /var/lib/postgresql/backup
+ls -lh
+```
+```
+total 8.0K
+-rw-r--r-- 1 postgres postgres 7.1K Sep 19 15:56 backup_netology
+```
 
