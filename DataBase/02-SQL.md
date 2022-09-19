@@ -55,7 +55,7 @@ docker compose up -d
 ```
 docker compose ps
 ```
-В docker compose файле я так же подключил - /home/igor/HomeWorkSQL:/Script
+В docker compose файле я так же подключил - /home/igor/HomeWorkSQL/Script:/docker-entrypoint-initdb.d
 В папке Script лежит скрипт StartScript, который создаёт необходимые для задач базы данных, выборки и выводит их результат в файлы.
 Сделано с целью автоматизировать процесс.
 Описание скрипта:
