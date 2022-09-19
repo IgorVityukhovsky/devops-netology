@@ -26,11 +26,12 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
       - db-backup:/var/lib/postgresql/backup
-      - /home/igor/HomeWorkSQL:/Script
+      - /home/igor/HomeWorkSQL/Script:/docker-entrypoint-initdb.d
     ports:
       - "5432:5432"
     environment:
       PGDATA: /var/lib/postgresql/data/
+      #POSTGRES_USER: "root"
       POSTGRES_PASSWORD: example
 
     #restart:
@@ -131,8 +132,5 @@ EXPLAIN (FORMAT YAML) SELECT * FROM clients WHERE order_number IS NOT NULL;
 Подключимся в контейнер, логинимся под дефолтным пользователем постгресса и запускаем скрипт
 ```
 docker exec -it homeworksql-mydb-1 bash
-psql -h localhost -p 5432 -U postgres -W
-*вводим пароль описанный в docker compose файле*
-psql -f /Script/StartScript
-
+psql -f /docker-entrypoint-initdb.d/StartScript -U postgres
 ```
