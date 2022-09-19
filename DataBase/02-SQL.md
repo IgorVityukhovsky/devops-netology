@@ -26,7 +26,7 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
       - db-backup:/var/lib/postgresql/backup
-      - /home/igor/HomeWorkSQL/Script:/docker-entrypoint-initdb.d
+      - /home/igor/HomeWorkSQL/Script:/docker-entrypoint-initdb.d #из директории с таким названием скрипты будут выполняться автоматически 1 раз при старте контейнера. Но в нашем случае этого не произойдёт, так как скрипт написан для постгресса и запускать надо через него. Скрипт создаёт базы.
     ports:
       - "5432:5432"
     environment:
