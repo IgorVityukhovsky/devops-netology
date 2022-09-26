@@ -32,7 +32,7 @@ sudo chmod 777 /var/log/mysql
 ```
 Создаю файл с бекапом с содержанием из ДЗ
 ```
-nano /var/lib/mysql/backup/test_dump.sql
+nano /home/igor/MySQL/test_dump.sql
 ```
 ```
 -- MySQL dump 10.13  Distrib 8.0.21, for Linux (x86_64)
@@ -95,13 +95,17 @@ services:
   mysql:
     image: mysql:8
     volumes:
-      - db-data-mysql:/var/lib/mysql
-      - /var/lib/mysql/backup:/var/lib/mysql/backup
+      - /var/lib/mysql:/var/lib/mysql #Директория БД.
+      - /var/log/mysql:/var/log/mysql #log файл
+      - ./volumes/mysql/conf.d:/etc/mysql/conf.d:ro #Конфигурация mysql.
     ports:
-      - 3306:3306
+      - "3306:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD="pass"
+      - MYSQL_DATABASE="test"
+      - MYSQL_USER="root"
+      - MYSQL_PASSWORD="pass"
+      - BITNAMI_DEBUG=true
 
 
 volumes:
@@ -130,6 +134,13 @@ cd /home/igor/MySQL
 docker compose build 
 docker compose up -d
 docker compose ps
+```
+
+Дадим права на каталог и поместим туда бекап
+```
+sudo chmod 777 /home/igor/MySQL/volumes/mysql/backup/
+cp home/igor/MySQL/test_dump.sql /home/igor/MySQL/volumes/mysql/backup/
+
 ```
 
 
