@@ -98,13 +98,14 @@ services:
       - /var/lib/mysql:/var/lib/mysql #Директория БД.
       - /var/log/mysql:/var/log/mysql #log файл
       - ./volumes/mysql/conf.d:/etc/mysql/conf.d:ro #Конфигурация mysql.
+      - ./volumes/mysql/backup:/etc/mysql/backup
     ports:
       - "3306:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD="pass"
-      - MYSQL_DATABASE="test"
-      - MYSQL_USER="root"
-      - MYSQL_PASSWORD="pass"
+      - MYSQL_ROOT_PASSWORD=pass
+      - MYSQL_DATABASE=test
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=pass
       - BITNAMI_DEBUG=true
 
 
