@@ -24,8 +24,11 @@
 Создаю директорию, где будет храниться бекап и которую мы примапим к нашему контейнеру, так же накидываю на неё права
 
 ```
-sudo mkdir -p /var/lib/mysql/backup
-sudo chmod 777 /var/lib/mysql/backup
+sudo mkdir -p /var/lib/mysql
+sudo chmod 777 /var/lib/mysql
+sudo mkdir /var/log/mysql
+sudo chmod 777 /var/log/mysql
+
 ```
 Создаю файл с бекапом с содержанием из ДЗ
 ```
