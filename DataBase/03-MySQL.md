@@ -274,6 +274,27 @@ show table status where name = 'orders';
 +--------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+---------------------+------------+--------------------+----------+----------------+---------+
 1 row in set (0.00 sec)
 ```
+Вывод команды SHOW PROFILES;
+```
+mysql> SHOW PROFILES;
++----------+------------+-----------------------------------------+
+| Query_ID | Duration   | Query                                   |
++----------+------------+-----------------------------------------+
+|        1 | 0.00333325 | show table status where name = 'orders' |
++----------+------------+-----------------------------------------+
+1 row in set, 1 warning (0.00 sec)
+```
+Изменение движка таблицы
+```
+mysql> ALTER TABLE orders ENGINE=MyISAM;
+Query OK, 5 rows affected (0.04 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE orders ENGINE=InnoDB;
+Query OK, 5 rows affected (0.05 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+```
 
 
 
