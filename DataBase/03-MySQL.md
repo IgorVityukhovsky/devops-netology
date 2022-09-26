@@ -85,8 +85,49 @@ UNLOCK TABLES;
 
 -- Dump completed on 2020-10-11 18:15:33
 ```
+Создаю docker-compose файл следующего содержания
+```
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8
+    volumes:
+      - db-data-mysql:/var/lib/mysql
+      - /var/lib/mysql/backup:/var/lib/mysql/backup
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_PASSWORD=password
 
 
+volumes:
+  db-data-mysql:
+
+networks:
+  mysqlnetwork000:
+    driver: 'local'
+```
+Обеспечим работоспособность докера для России
+```
+dig @114.114.114.114 registry-1.docker.io
+```
+Возмём любой из адресов и пропишем его в файл /etc/hosts
+```
+sudo nano /etc/hosts
+```
+```
+3.216.34.172 registry-1.docker.io
+#со временем IP адрес может измениться
+```
+Перейдём в директорию с файлом docker-compose.yml, соберём проект, запустим его и проверим что контейнер поднялся
+```
+cd
+cd /home/igor/MySQL
+docker compose build 
+docker compose up -d
+docker compose ps
+```
 
 
 
