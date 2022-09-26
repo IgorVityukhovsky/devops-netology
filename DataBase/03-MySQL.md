@@ -222,6 +222,32 @@ mysql> select count(*) from orders where price>300;
 Используя таблицу INFORMATION_SCHEMA.USER_ATTRIBUTES получите данные по пользователю `test` и 
 **приведите в ответе к задаче**.
 
+## Ответ:
+Создадим пользователя
+```
+create user 'test'@'localhost' 
+    identified with mysql_native_password by 'test-pass' 
+    with max_queries_per_hour 100
+    password expire interval 180 day 
+    failed_login_attempts 3 
+    attribute '{"fname": "James","lname": "Pretty"}';
+```
+Предоставим права
+```
+mysql> grant select on test_db. to test@'localhost';
+mysql> flush privileges;
+```
+Данные по пользователю
+```
+mysql> select * from INFORMATION_SCHEMA.USER_ATTRIBUTEs where user = 'test';
++------+-----------+---------------------------------------+
+| USER | HOST      | ATTRIBUTE                             |
++------+-----------+---------------------------------------+
+| test | localhost | {"fname": "James", "lname": "Pretty"} |
++------+-----------+---------------------------------------+
+1 row in set (0.00 sec)
+```
+
 ## Задача 3
 
 Установите профилирование `SET profiling = 1`.
@@ -232,6 +258,24 @@ mysql> select count(*) from orders where price>300;
 Измените `engine` и **приведите время выполнения и запрос на изменения из профайлера в ответе**:
 - на `MyISAM`
 - на `InnoDB`
+
+## Ответ:
+```
+mysql> SET profiling = 1;
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+```
+Engine используется
+```
+show table status where name = 'orders';
++--------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+---------------------+------------+--------------------+----------+----------------+---------+
+| Name   | Engine | Version | Row_format | Rows | Avg_row_length | Data_length | Max_data_length | Index_length | Data_free | Auto_increment | Create_time         | Update_time         | Check_time | Collation          | Checksum | Create_options | Comment |
++--------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+---------------------+------------+--------------------+----------+----------------+---------+
+| orders | InnoDB |      10 | Dynamic    |    5 |           3276 |       16384 |               0 |            0 |         0 |              6 | 2022-09-26 13:52:10 | 2022-09-26 13:52:10 | NULL       | utf8mb4_0900_ai_ci |     NULL |                |         |
++--------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+---------------------+------------+--------------------+----------+----------------+---------+
+1 row in set (0.00 sec)
+```
+
+
 
 ## Задача 4 
 
@@ -246,10 +290,4 @@ mysql> select count(*) from orders where price>300;
 
 Приведите в ответе измененный файл `my.cnf`.
 
----
 
-### Как оформить ДЗ?
-
-Выполненное домашнее задание пришлите ссылкой на .md-файл в вашем репозитории.
-
----
