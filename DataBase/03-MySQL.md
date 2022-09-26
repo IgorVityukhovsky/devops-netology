@@ -152,7 +152,7 @@ CREATE DATABASE db DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 export DBNAME=db
 mysql -u root -p ${DBNAME} < /etc/mysql/backup/test_dump.sql
 ```
-Согласно справке, за статус сервера отвечает ключ \s
+Согласно справке, за статус БД отвечает ключ \s
 ```
 mysql> \s
 --------------
@@ -180,6 +180,20 @@ Threads: 2  Questions: 53  Slow queries: 0  Opens: 140  Flush tables: 3  Open ta
 --------------
 
 ```
+Подключаемся к восстановленной БД и получаем список таблиц
+```
+USE db;
+SHOW tables;
+```
+```
++--------------+
+| Tables_in_db |
++--------------+
+| orders       |
++--------------+
+1 row in set (0.00 sec)
+```
+
 
 
 
