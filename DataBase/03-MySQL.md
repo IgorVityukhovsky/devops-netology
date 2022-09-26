@@ -193,8 +193,17 @@ SHOW tables;
 +--------------+
 1 row in set (0.00 sec)
 ```
+А так же количество заказов с ценой больше 300
+```
+mysql> select count(*) from orders where price>300;
++----------+
+| count(*) |
++----------+
+|        1 |
++----------+
+1 row in set (0.00 sec)
 
-
+```
 
 
 ## Задача 2
