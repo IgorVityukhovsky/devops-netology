@@ -144,7 +144,42 @@ sudo chmod 777 /home/igor/MySQL/volumes/mysql/backup/
 cp home/igor/MySQL/test_dump.sql /home/igor/MySQL/volumes/mysql/backup/
 
 ```
+Подключимся к MySQL и создадим базу данных
+```
+mysql -uroot -p
+CREATE DATABASE db DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+\q
+export DBNAME=db
+mysql -u root -p ${DBNAME} < /etc/mysql/backup/test_dump.sql
+```
+Согласно справке, за статус сервера отвечает ключ \s
+```
+mysql> \s
+--------------
+mysql  Ver 8.0.30 for Linux on x86_64 (MySQL Community Server - GPL)
 
+Connection id:		13
+Current database:	
+Current user:		root@localhost
+SSL:			Not in use
+Current pager:		stdout
+Using outfile:		''
+Using delimiter:	;
+Server version:		8.0.30 MySQL Community Server - GPL
+Protocol version:	10
+Connection:		Localhost via UNIX socket
+Server characterset:	utf8mb4
+Db     characterset:	utf8mb4
+Client characterset:	latin1
+Conn.  characterset:	latin1
+UNIX socket:		/var/run/mysqld/mysqld.sock
+Binary data as:		Hexadecimal
+Uptime:			56 min 51 sec
+
+Threads: 2  Questions: 53  Slow queries: 0  Opens: 140  Flush tables: 3  Open tables: 58  Queries per second avg: 0.015
+--------------
+
+```
 
 
 
