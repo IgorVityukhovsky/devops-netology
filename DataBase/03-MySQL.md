@@ -107,6 +107,7 @@ services:
       - MYSQL_USER=user
       - MYSQL_PASSWORD=pass
       - BITNAMI_DEBUG=true
+      #При изменении переменных волюмы лучше очищать
 
 
 volumes:
