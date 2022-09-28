@@ -40,7 +40,6 @@ services:
 
 volumes:
   db-data:
-  db-backup:
 networks:
   postgresnetwork000:
     driver: 'local'
