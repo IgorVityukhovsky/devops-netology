@@ -65,7 +65,7 @@ psql -U postgres
 ```
 вывод списка БД
 ```
-\db[+]  [PATTERN]      list tablespaces
+\l[+]   [PATTERN]      list databases
 ```
 подключение к БД
 ```
