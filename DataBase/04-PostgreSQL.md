@@ -15,6 +15,75 @@
 - вывода описания содержимого таблиц
 - выхода из psql
 
+## Ответ
+
+Создал директорию для выполнения ДЗ со следующим содержимым:
+**Вставить скриншот**
+Заранее скачал бекап для следующего задания, что бы сразу подключить его к машине.
+Docker-compose файл следующего содержания:
+```
+version: '3.8'
+services:
+  mydb:
+    image: postgres:13
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - /home/igor/HomeWorkPostgreSQL/backup:/var/lib/postgresql/backup
+    ports:
+      - "5432:5432"
+    environment:
+      PGDATA: /var/lib/postgresql/data/
+      POSTGRES_PASSWORD: root
+
+volumes:
+  db-data:
+  db-backup:
+networks:
+  postgresnetwork000:
+    driver: 'local'
+```
+Выполняем сборку проекта, поднимаем докер контейнер, проверяем, что он запустился
+```
+cd /home/igor/HomeWorkPostgreSQL
+docker compose build
+docker compose up -d
+docker compose ps
+```
+Можем так же зайти в контейнер и проверить, что нужный волюм подключился и бекап находится в нём
+```
+docker exec -it homeworkpostgresql-mydb-1 bash
+root@84b40c3158b1:/# cd /var/lib/postgresql/backup
+root@84b40c3158b1:/var/lib/postgresql/backup# ls
+test_dump.sql
+```
+Подключаемся к постгресу и выводим справку
+```
+psql -U postgres
+\?
+```
+вывод списка БД
+```
+\db[+]  [PATTERN]      list tablespaces
+```
+подключение к БД
+```
+                         connect to new database (currently "postgres")
+#Имеется ввиду, что для подключения к базе достаточно ввести её название 
+```
+вывод списка таблиц
+```
+\d[S+]                 list tables, views, and sequences
+```
+вывод описания содержимого таблиц
+```
+\d[S+]  NAME           describe table, view, sequence, or index
+```
+выход из psql
+```
+\q                     quit psql
+```
+
+
 ## Задача 2
 
 Используя `psql` создайте БД `test_database`.
