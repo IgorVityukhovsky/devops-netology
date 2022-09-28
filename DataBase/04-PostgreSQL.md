@@ -103,6 +103,36 @@ psql -U postgres
 
 **Приведите в ответе** команду, которую вы использовали для вычисления и полученный результат.
 
+## Ответ
+Создаём тестовую базу данных
+```
+postgres=# CREATE DATABASE test_database;
+CREATE DATABASE
+\q
+```
+Переходим в директорию tmp, что бы не было проблем с правами, заходим под пользователем постгрес, восстанавливаем бекап
+```
+cd /tmp
+su postgres
+psql -f /var/lib/postgresql/backup/test_dump.sql test_database
+```
+Сбор статистики по таблице
+```
+postgres=# analyze verbose orders;
+INFO:  analyzing "public.orders"
+INFO:  "orders": scanned 1 of 1 pages, containing 8 live rows and 0 dead rows; 8 rows in sample, 8 estimated total rows
+ANALYZE
+```
+Использование таблицы pg_stats
+```
+postgres=# select avg_width from pg_stats where tablename='orders';
+ avg_width 
+-----------
+         4
+        16
+         4
+(3 rows)
+```
 ## Задача 3
 
 Архитектор и администратор БД выяснили, что ваша таблица orders разрослась до невиданных размеров и
@@ -112,6 +142,27 @@ psql -U postgres
 Предложите SQL-транзакцию для проведения данной операции.
 
 Можно ли было изначально исключить "ручное" разбиение при проектировании таблицы orders?
+
+```
+postgres=# 
+begin;
+    create table orders_new (
+        id integer NOT NULL,
+        title varchar(80) NOT NULL,
+        price integer) partition by range(price);
+    create table orders_less partition of orders_new for values from (0) to (499);
+    create table orders_more partition of orders_new for values from (499) to (99999);
+    insert into orders_new (id, title, price) select * from orders;
+commit;
+BEGIN
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+INSERT 0 8
+COMMIT
+```
+Нам бы не пришлось приходить к ручной разбивке, если бы этот момент был учтён ещё при создании таблицы. Необходимо было определить тип partitioned table
+
 
 ## Задача 4
 
