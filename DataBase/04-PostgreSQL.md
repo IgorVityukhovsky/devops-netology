@@ -177,5 +177,18 @@ COMMIT
 ```
 pg_dump -d test_database > /backup/test_database.sql
 ```
-Для определения значения столбца title можно было бы использовать индекс, для обеспечения уникальности.
+Можно прямо в создание partitions добавить директиву UNIQUE напротив объявления полей таблицы
+```
+CREATE TABLE public.orders_price_lte_499 (
+    id integer DEFAULT nextval('public.orders_new_id_seq'::regclass) NOT NULL,
+    title character varying(80) NOT NULL UNIQUE,
+    price integer DEFAULT 0
+);
+
+CREATE TABLE public.orders_price_gt_499 (
+    id integer DEFAULT nextval('public.orders_new_id_seq'::regclass) NOT NULL,
+    title character varying(80) NOT NULL UNIQUE,
+    price integer DEFAULT 0
+);
+```
 
