@@ -27,6 +27,32 @@
 
 Далее мы будем работать с данным экземпляром elasticsearch.
 
+
+sudo sysctl -w vm.max_map_count = 262144
+
+version: '3.8'
+services:
+  elasticsearch:
+    image: elasticsearch:7.17.6
+    container_name: es
+    #path.data: /var/lib
+    #node.name: netology_test
+    ulimits:
+     nofile:
+      soft: 262144
+      hard: 262144
+
+    environment:
+      #- ES_HEAP_SIZE=2200m
+      #- LS_HEAP_SIZE=1100m
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms3g -Xmx3g"
+      - "ES_HEAP_SIZE=4g"
+
+networks:
+  elasticsearch:
+    driver: 'local'
+
 ## Задача 2
 
 В этом задании вы научитесь:
