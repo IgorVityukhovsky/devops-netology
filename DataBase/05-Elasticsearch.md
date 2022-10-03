@@ -68,6 +68,9 @@ networks:
     driver: 'local'
 ```    
 
+проверить curl -XGET 'http://localhost:9200/_cluster/state?pretty'
+
+
 ## Задача 2
 
 В этом задании вы научитесь:
