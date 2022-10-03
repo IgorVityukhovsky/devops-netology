@@ -27,14 +27,17 @@
 
 Далее мы будем работать с данным экземпляром elasticsearch.
 
-
+```
 sudo sysctl -w vm.max_map_count = 262144
-
+```
+```
 version: '3.8'
 services:
   elasticsearch:
     image: elasticsearch:7.17.6
     container_name: es
+    tty: true
+    stdin_open: true
     #path.data: /var/lib
     #node.name: netology_test
     ulimits:
@@ -42,16 +45,28 @@ services:
       soft: 262144
       hard: 262144
 
+    command: |
+      /bin/bash -c "
+        chmod 777 /var/lib
+        /bin/bash || exit 0
+      "
+
     environment:
       #- ES_HEAP_SIZE=2200m
       #- LS_HEAP_SIZE=1100m
       - discovery.type=single-node
+      - node.name=netology_test
+      - path.data=/var/lib
+      #- xpack.security.enabled=true
       - "ES_JAVA_OPTS=-Xms3g -Xmx3g"
       - "ES_HEAP_SIZE=4g"
+
+
 
 networks:
   elasticsearch:
     driver: 'local'
+```    
 
 ## Задача 2
 
