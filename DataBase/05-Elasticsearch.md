@@ -103,7 +103,7 @@ curl -XGET 'http://localhost:9200/_nodes'
 ```
 
 
-![скриншот](https://i.ibb.co/PtXhrQN/Screenshot-from-2022-09-28-17-16-32.png)
+![скриншот](https://i.ibb.co/zNXz9Vf/Screenshot-from-2022-10-04-14-21-08.png)
 
 ## Задача 2
 
