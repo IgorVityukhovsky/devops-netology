@@ -34,7 +34,7 @@ sudo sysctl -w vm.max_map_count = 262144
 version: '3.8'
 services:
   elasticsearch:
-    image: elasticsearch:7.17.6
+    image: elasticsearch:7.17.6   #Не было тага 7, использовал 7.17.6
     container_name: es
     tty: true
     stdin_open: true
@@ -48,9 +48,9 @@ services:
     environment:
       #- ES_HEAP_SIZE=2200m
       #- LS_HEAP_SIZE=1100m
-      - discovery.type=single-node
-      - node.name=netology_test
-      - path.data=/var/lib
+      - discovery.type=single-node       #Необходимо для работы одной ноды
+      - node.name=netology_test          #Задаём имя ноды
+      - path.data=/var/lib               #Задаём путь для хранения данных
       #- xpack.security.enabled=true
       - "ES_JAVA_OPTS=-Xms3g -Xmx3g"
       - "ES_HEAP_SIZE=4g"
@@ -64,7 +64,7 @@ networks:
 ```
 curl -XGET 'http://localhost:9200/_cluster/state?pretty'
 ```
-
+![скриншот](https://i.ibb.co/PtXhrQN/Screenshot-from-2022-09-28-17-16-32.png)
 
 ## Задача 2
 
