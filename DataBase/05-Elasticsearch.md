@@ -132,6 +132,24 @@ docker login
 docker tag igor_es igorvit/igor_es
 docker push igorvit/igor_es
 ```
+Остановить все контейнеры
+```
+docker stop $(docker ps -a -q)
+```
+Удалить все контейнеры
+```
+docker rm $(docker ps -a -q)
+```
+Удалить все образы
+```
+docker rmi $(docker images -q)
+```
+В случае ошибок, содержащих "must be forced" добавляем ключ -f
+```
+docker rmi -f $(docker images -q)
+```
+
+
 
 
 
