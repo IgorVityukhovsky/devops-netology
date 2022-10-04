@@ -124,6 +124,16 @@ volumes:
 ```
 Либо добавив команды в docker compose \ dockerfile на добавление нужных строк в файл при создании контейнера
 
+Собираем образ и пушим на докерхаб
+```
+docker ps
+docker commit 61e6113b275b igor_es
+docker login
+docker tag igor_es igorvit/igor_es
+docker push igorvit/igor_es
+```
+
+
 
 ## Задача 2
 
