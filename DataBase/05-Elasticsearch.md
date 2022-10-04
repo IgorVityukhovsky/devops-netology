@@ -105,6 +105,10 @@ curl -XGET 'http://localhost:9200/_nodes'
 
 ![скриншот](https://i.ibb.co/zNXz9Vf/Screenshot-from-2022-10-04-14-21-08.png)
 
+
+В будущем объяснить про /elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+
+
 ## Задача 2
 
 В этом задании вы научитесь:
