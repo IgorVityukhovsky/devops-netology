@@ -211,6 +211,66 @@ https://hub.docker.com/repository/docker/igorvit/igor_es
 При проектировании кластера elasticsearch нужно корректно рассчитывать количество реплик и шард,
 иначе возможна потеря данных индексов, вплоть до полной, при деградации системы.
 
+## Ответ
+
+
+Список индексов и их статусы:
+```
+[elasticsearch@71ef1a8e572b ~]$ curl --cacert /usr/share/elasticsearch/config/certs/http_ca.crt -u elastic -X PUT https://localhost:9200/ind-1?pretty -H 'Content-Type: application/json' -d'{ "settings": { "index": { "number_of_shards": 1, "number_of_replicas": 0 }}}'
+[elasticsearch@71ef1a8e572b ~]$ curl --cacert /usr/share/elasticsearch/config/certs/http_ca.crt -u elastic -X PUT https://localhost:9200/ind-2?pretty -H 'Content-Type: application/json' -d'{ "settings": { "index": { "number_of_shards": 2, "number_of_replicas": 1 }}}'
+[elasticsearch@71ef1a8e572b ~]$ curl --cacert /usr/share/elasticsearch/config/certs/http_ca.crt -u elastic -X PUT https://localhost:9200/ind-3?pretty -H 'Content-Type: application/json' -d'{ "settings": { "index": { "number_of_shards": 4, "number_of_replicas": 2 }}}'
+
+[elasticsearch@71ef1a8e572b ~]$ curl --cacert /usr/share/elasticsearch/config/certs/http_ca.crt -u elastic https://localhost:9200/_cat/indices?v
+Enter host password for user 'elastic':
+health status index uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+green  open   ind-1 wKioCclpQgKO3UL_yzwZgg   1   0          0            0       225b           225b
+yellow open   ind-3 0kOnROPHQd-hOX9IduPksw   4   2          0            0       900b           900b
+yellow open   ind-2 oVkx8NaLTIGxrmRY_xO7fQ   2   1          0            0       450b           450b
+```
+Состояние кластера:
+```
+[elasticsearch@71ef1a8e572b ~]$ curl --cacert /usr/share/elasticsearch/config/certs/http_ca.crt -u elastic https://localhost:9200/_cluster/health?pretty
+Enter host password for user 'elastic':
+{
+  "cluster_name" : "netology",
+  "status" : "yellow",
+  "timed_out" : false,
+  "number_of_nodes" : 1,
+  "number_of_data_nodes" : 1,
+  "active_primary_shards" : 9,
+  "active_shards" : 9,
+  "relocating_shards" : 0,
+  "initializing_shards" : 0,
+  "unassigned_shards" : 10,
+  "delayed_unassigned_shards" : 0,
+  "number_of_pending_tasks" : 0,
+  "number_of_in_flight_fetch" : 0,
+  "task_max_waiting_in_queue_millis" : 0,
+  "active_shards_percent_as_number" : 47.368421052631575
+}
+```
+Состояние yellow по кластеру связано с тем, что есть unassigned шарды. 
+
+Удаление индексов:
+```
+[elasticsearch@71ef1a8e572b ~]$ curl --cacert /usr/share/elasticsearch/config/certs/http_ca.crt -u elastic -X DELETE https://localhost:9200/ind-1?pretty
+Enter host password for user 'elastic':
+{
+  "acknowledged" : true
+}
+[elasticsearch@71ef1a8e572b ~]$ curl --cacert /usr/share/elasticsearch/config/certs/http_ca.crt -u elastic -X DELETE https://localhost:9200/ind-2?pretty
+Enter host password for user 'elastic':
+{
+  "acknowledged" : true
+}
+[elasticsearch@71ef1a8e572b ~]$ curl --cacert /usr/share/elasticsearch/config/certs/http_ca.crt -u elastic -X DELETE https://localhost:9200/ind-3?pretty
+Enter host password for user 'elastic':
+{
+  "acknowledged" : true
+}
+```
+
+
 ## Задача 3
 
 В данном задании вы научитесь:
@@ -243,8 +303,61 @@ https://hub.docker.com/repository/docker/igorvit/igor_es
 
 ---
 
-### Как cдавать задание
+## Ответ
 
-Выполненное домашнее задание пришлите ссылкой на .md-файл в вашем репозитории.
+Директива `path.repo: /usr/share/elasticsearch/snapshots`, была добавлена заранее на этапе создания образа, сам запрос на регистрацию snapshot repo:
+```
+[elasticsearch@2403641c68f1 ~]$ curl --cacert /usr/share/elasticsearch/config/certs/http_ca.crt -u elastic -X PUT https://localhost:9200/_snapshot/netology_backup?pretty -H 'Content-Type: application/json' -d' { "type": "fs", "settings": { "location": "/usr/share/elasticsearch/snapshots"}}'
+Enter host password for user 'elastic':
+{
+  "acknowledged" : true
+}
+```
+Список индексов:
+```
+[elasticsearch@2403641c68f1 ~]$ curl --cacert /usr/share/elasticsearch/config/certs/http_ca.crt -u elastic https://localhost:9200/_cat/indices?v
+Enter host password for user 'elastic':
+health status index uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+green  open   test  7rRcEyc6S6GXZJ5B3_ii0w   1   0          0            0       225b           225b
+```
+Директория snapshots до snapshot:
+```
+[elasticsearch@2403641c68f1 snapshots]$ ls -lah /usr/share/elasticsearch/snapshots
+total 16K
+drwxrwxr-x. 2 elasticsearch elasticsearch 4.0K Mar  9 11:31 .
+drwx------. 1 elasticsearch elasticsearch 4.0K Mar  9 11:24 ..
+```
+Директория snapshots после snapshot
+```
+[elasticsearch@2403641c68f1 snapshots]$ ls -lah /usr/share/elasticsearch/snapshots
+total 52K
+drwxrwxr-x. 3 elasticsearch elasticsearch 4.0K Mar  9 11:48 .
+drwx------. 1 elasticsearch elasticsearch 4.0K Mar  9 11:24 ..
+-rw-r--r--. 1 elasticsearch elasticsearch 1.1K Mar  9 11:48 index-0
+-rw-r--r--. 1 elasticsearch elasticsearch    8 Mar  9 11:48 index.latest
+drwxr-xr-x. 5 elasticsearch elasticsearch 4.0K Mar  9 11:48 indices
+-rw-r--r--. 1 elasticsearch elasticsearch  18K Mar  9 11:48 meta-YCONu7qjRemBquBUkalV2g.dat
+-rw-r--r--. 1 elasticsearch elasticsearch  396 Mar  9 11:48 snap-YCONu7qjRemBquBUkalV2g.dat
+```
+Список индексов после удаления test и создания test-2
+```
+[elasticsearch@2403641c68f1 snapshots]$ curl --cacert /usr/share/elasticsearch/config/certs/http_ca.crt -u elastic https://localhost:9200/_cat/indices?v
+Enter host password for user 'elastic':
+health status index  uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+green  open   test-2 sPegl4shSY-fY0soZ2eEkw   1   0          0            0       225b           225b
+```
+Запрос на восстановление, список индексов:
+```
+[elasticsearch@2403641c68f1 snapshots]$ curl --cacert /usr/share/elasticsearch/config/certs/http_ca.crt -u elastic -X POST https://localhost:9200/_snapshot/netology_backup/snapshot_09_03_2022/_restore?pretty
+Enter host password for user 'elastic':
+{
+  "accepted" : true
+}
 
----
+[elasticsearch@2403641c68f1 snapshots]$ curl --cacert /usr/share/elasticsearch/config/certs/http_ca.crt -u elastic https://localhost:9200/_cat/indices?v
+Enter host password for user 'elastic':
+health status index  uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+green  open   test-2 sPegl4shSY-fY0soZ2eEkw   1   0          0            0       225b           225b
+green  open   test   cIFjzz5mQ2O8Ng5mLlKuCQ   1   0          0            0       225b           225b
+
+```
