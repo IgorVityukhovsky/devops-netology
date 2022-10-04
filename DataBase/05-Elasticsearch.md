@@ -47,7 +47,7 @@ services:
       soft: 262144
       hard: 262144
 
-    entrypoint: /bin/bash -c "chmod 777 /var/lib && mkdir /usr/share/elasticsearch/snapshots && chmod 777 /usr/share/elasticsearch/snapshots && /bin/tini "/usr/local/bin/docker-entrypoint.sh eswrapper""
+    entrypoint: /bin/bash -c "chmod 777 /var/lib && /bin/tini "/usr/local/bin/docker-entrypoint.sh eswrapper""
 
     #Команда, которая выполнится при запуске контейнера, задаёт необходимые права на нужную нам директорию
     #Если оставить только команду на назначение прав, контейнер будет считать её основной и после её завершения завершится и контейнер
@@ -148,10 +148,41 @@ docker rmi $(docker images -q)
 ```
 docker rmi -f $(docker images -q)
 ```
+Запускаем докер с нашим имеджем, он скачается с докерхаб, так как локально его не будет
+```
+docker run --name es -d igorvit/igor_es
+```
+Всё работает
+```
+docker ps
+CONTAINER ID   IMAGE             COMMAND                  CREATED         STATUS         PORTS                NAMES
+38684a0ed7bc   igorvit/igor_es   "/bin/bash -c 'chmod…"   9 seconds ago   Up 9 seconds   9200/tcp, 9300/tcp   es
+```
+```
+curl -XGET 'http://localhost:9200/'
 
-
-
-
+{
+  "name" : "netology_test",
+  "cluster_name" : "docker-cluster",
+  "cluster_uuid" : "nyOXFCAeSIiX1POtIZSgqg",
+  "version" : {
+    "number" : "7.17.6",
+    "build_flavor" : "default",
+    "build_type" : "docker",
+    "build_hash" : "f65e9d338dc1d07b642e14a27f338990148ee5b6",
+    "build_date" : "2022-08-23T11:08:48.893373482Z",
+    "build_snapshot" : false,
+    "lucene_version" : "8.11.1",
+    "minimum_wire_compatibility_version" : "6.8.0",
+    "minimum_index_compatibility_version" : "6.0.0-beta1"
+  },
+  "tagline" : "You Know, for Search"
+}
+```
+Ссылка на докерхаб
+```
+https://hub.docker.com/repository/docker/igorvit/igor_es
+```
 
 ## Задача 2
 
