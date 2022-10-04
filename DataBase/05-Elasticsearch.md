@@ -71,7 +71,6 @@ networks:
   elasticsearch:
     driver: 'local'
 ```    
-
 Собираем проект, запускаем контейнер, проверяем, что он запустился, подключаемся к нему и выполняем нужный нам запрос /
 ```
 docker compose build
@@ -99,15 +98,31 @@ curl -XGET 'http://localhost:9200/'
   "tagline" : "You Know, for Search"
 }
 ```
-Так же можем проверить, что остальные наши настройки так же применились
+Можем проверить, что остальные наши настройки так же применились
 ```
 curl -XGET 'http://localhost:9200/_nodes'
 ```
 ![скриншот](https://i.ibb.co/zNXz9Vf/Screenshot-from-2022-10-04-14-21-08.png) 
 ![скриншот](https://i.ibb.co/xfs8tRZ/Screenshot-from-2022-10-04-19-56-29.png)
 
+В текущей реализации обошлось без правки elasticsearch.yml.
 
-В будущем объяснить про /elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+Но если бы она была нам нужна, в elasticsearch.yml помимо дефолтных значений, которые находятся в образе мы бы добавили ещё свои и получилось бы:
+```
+cluster.name: "docker-cluster"
+network.host: 0.0.0.0
+discovery.type: single-node
+node.name: netology_test
+path.data: /var/lib
+path.repo: /usr/share/elasticsearch/snapshots
+```
+
+Можно было бы создать этот конфиг локально и подмапить волюм, описав это в docker compose
+```
+volumes:
+      - /elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+```
+Либо добавив команды в docker compose \ dockerfile на добавление нужных строк в файл при создании контейнера
 
 
 ## Задача 2
