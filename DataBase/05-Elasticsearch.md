@@ -48,6 +48,7 @@ services:
       hard: 262144
 
     entrypoint: /bin/bash -c "chmod 777 /var/lib && /bin/tini "/usr/local/bin/docker-entrypoint.sh eswrapper""
+    
     #Команда, которая выполнится при запуске контейнера, задаёт необходимые права на нужную нам директорию
     #Если оставить только команду на назначение прав, контейнер будет считать её основной и после её завершения завершится и контейнер
     #Что бы этого избежать, добавили в команду запуск процесса elasticsearch так как именно он нам и нужен как основной
@@ -69,10 +70,39 @@ networks:
     driver: 'local'
 ```    
 
-проверить 
+Собираем проект, запускаем контейнер, проверяем, что он запустился, подключаемся к нему и выполняем нужный нам запрос /
 ```
-curl -XGET 'http://localhost:9200/_cluster/state?pretty'
+docker compose build
+docker compose up -d
+docker compose ps
+docker exec -it es bash
+curl -XGET 'http://localhost:9200/'
 ```
+```
+{
+  "name" : "netology_test",                  #Имя которое мы задали
+  "cluster_name" : "docker-cluster",
+  "cluster_uuid" : "00kuogNgSki7om2uwB8Q3w",
+  "version" : {
+    "number" : "7.17.6",
+    "build_flavor" : "default",
+    "build_type" : "docker",
+    "build_hash" : "f65e9d338dc1d07b642e14a27f338990148ee5b6",
+    "build_date" : "2022-08-23T11:08:48.893373482Z",
+    "build_snapshot" : false,
+    "lucene_version" : "8.11.1",
+    "minimum_wire_compatibility_version" : "6.8.0",
+    "minimum_index_compatibility_version" : "6.0.0-beta1"
+  },
+  "tagline" : "You Know, for Search"
+}
+```
+Так же можем проверить, что наши данные записываются именно туда, куда мы указали
+```
+curl -XGET 'http://localhost:9200/_nodes'
+```
+
+
 ![скриншот](https://i.ibb.co/PtXhrQN/Screenshot-from-2022-09-28-17-16-32.png)
 
 ## Задача 2
