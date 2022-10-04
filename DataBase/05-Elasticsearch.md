@@ -38,18 +38,12 @@ services:
     container_name: es
     tty: true
     stdin_open: true
-    #path.data: /var/lib
-    #node.name: netology_test
     ulimits:
      nofile:
       soft: 262144
       hard: 262144
 
-    command: |
-      /bin/bash -c "
-        chmod 777 /var/lib
-        /bin/bash || exit 0
-      "
+    entrypoint: /bin/bash -c "chmod 777 /var/lib && /bin/tini "/usr/local/bin/docker-entrypoint.sh eswrapper""
 
     environment:
       #- ES_HEAP_SIZE=2200m
@@ -61,14 +55,15 @@ services:
       - "ES_JAVA_OPTS=-Xms3g -Xmx3g"
       - "ES_HEAP_SIZE=4g"
 
-
-
 networks:
   elasticsearch:
     driver: 'local'
 ```    
 
-проверить curl -XGET 'http://localhost:9200/_cluster/state?pretty'
+проверить 
+```
+curl -XGET 'http://localhost:9200/_cluster/state?pretty'
+```
 
 
 ## Задача 2
