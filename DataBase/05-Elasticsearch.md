@@ -57,8 +57,6 @@ services:
     
 
     environment:
-      #- ES_HEAP_SIZE=2200m
-      #- LS_HEAP_SIZE=1100m
       - discovery.type=single-node                     #Необходимо для работы одной ноды
       - node.name=netology_test                        #Задаём имя ноды
       - path.data=/var/lib                             #Задаём путь для хранения данных
@@ -124,7 +122,7 @@ volumes:
 ```
 Либо добавив команды в docker compose \ dockerfile на добавление нужных строк в файл при создании контейнера
 
-Собираем образ и пушим на докерхаб
+Собираем образ из контейнера и пушим на докерхаб
 ```
 docker ps
 docker commit 61e6113b275b igor_es
