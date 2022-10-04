@@ -47,20 +47,22 @@ services:
       soft: 262144
       hard: 262144
 
-    entrypoint: /bin/bash -c "chmod 777 /var/lib && /bin/tini "/usr/local/bin/docker-entrypoint.sh eswrapper""
-    
+    entrypoint: /bin/bash -c "chmod 777 /var/lib && mkdir /usr/share/elasticsearch/snapshots && chmod 777 /usr/share/elasticsearch/snapshots && /bin/tini "/usr/local/bin/docker-entrypoint.sh eswrapper""
+
     #Команда, которая выполнится при запуске контейнера, задаёт необходимые права на нужную нам директорию
     #Если оставить только команду на назначение прав, контейнер будет считать её основной и после её завершения завершится и контейнер
-    #Что бы этого избежать, добавили в команду запуск процесса elasticsearch так как именно он нам и нужен как основной
+    #Что бы этого избежать, добавил в команду запуск процесса elasticsearch так как именно он нам и нужен как основной
     #Команда взята из столбца COMMAND при запуске дефолтного контейнера
+    #Так же накидывает нужные права на папку из задачи 3
     
 
     environment:
       #- ES_HEAP_SIZE=2200m
       #- LS_HEAP_SIZE=1100m
-      - discovery.type=single-node       #Необходимо для работы одной ноды
-      - node.name=netology_test          #Задаём имя ноды
-      - path.data=/var/lib               #Задаём путь для хранения данных
+      - discovery.type=single-node                     #Необходимо для работы одной ноды
+      - node.name=netology_test                        #Задаём имя ноды
+      - path.data=/var/lib                             #Задаём путь для хранения данных
+      - path.repo=/usr/share/elasticsearch/snapshots   #Задаём путь для репозитория снапшотов для задачи 3
       #- xpack.security.enabled=true
       - "ES_JAVA_OPTS=-Xms3g -Xmx3g"
       - "ES_HEAP_SIZE=4g"
@@ -97,13 +99,12 @@ curl -XGET 'http://localhost:9200/'
   "tagline" : "You Know, for Search"
 }
 ```
-Так же можем проверить, что наши данные записываются именно туда, куда мы указали
+Так же можем проверить, что остальные наши настройки так же применились
 ```
 curl -XGET 'http://localhost:9200/_nodes'
 ```
-
-
-![скриншот](https://i.ibb.co/zNXz9Vf/Screenshot-from-2022-10-04-14-21-08.png)
+![скриншот](https://i.ibb.co/zNXz9Vf/Screenshot-from-2022-10-04-14-21-08.png) 
+![скриншот](https://i.ibb.co/xfs8tRZ/Screenshot-from-2022-10-04-19-56-29.png)
 
 
 В будущем объяснить про /elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
