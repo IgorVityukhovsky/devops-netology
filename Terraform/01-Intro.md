@@ -104,7 +104,7 @@ on linux_amd64
 ```
 sudo mkdir -p /usr/local/tf132
 ```
-Скопируем в неё наш скаченный архим
+Скопируем в неё наш скаченный архив
 ```
 sudo cp /home/igor/Downloads/terraform_1.3.2_linux_amd64.zip /usr/local/tf132
 ```
