@@ -116,3 +116,23 @@ cd /usr/local/tf132
 sudo unzip terraform_1.3.2_linux_amd64.zip
 sudo rm terraform_1.3.2_linux_amd64.zip
 ```
+Создадим симлинк и сделаем файлы исполняемыми
+```
+sudo ln -s /usr/local/tf132/terraform /usr/bin/terraform2
+sudo chmod ugo+x /usr/bin/terraform*
+```
+Теперь при вызове terraform будет вызываться версия 1.3.1, а при вызове terraform2 версия 1.3.2
+```
+terraform --version
+```
+```
+Terraform v1.3.1
+on linux_amd64
+```
+```
+terraform2 --version
+```
+```
+Terraform v1.3.2
+on linux_amd64
+```
