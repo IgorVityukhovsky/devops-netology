@@ -84,6 +84,7 @@ variables.tf         #тут хранятся наши переменные с I
 provider.tf          #описание используемого провайдера (яндекс), ID, Folder, ссылка на файл key.json
 key.json             #наши ID и ключи к облаку
 network.tf           #описание сети
+terraform.lock.hcl   #файл терраформа после отработки команды terraform init необходим для работы
 ```
 
 
