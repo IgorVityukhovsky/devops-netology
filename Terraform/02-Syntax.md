@@ -87,7 +87,4 @@ network.tf           #описание сети
 terraform.lock.hcl   #файл терраформа после отработки команды terraform init необходим для работы
 ```
 
-
-
-
-
+export VAR="value"	
