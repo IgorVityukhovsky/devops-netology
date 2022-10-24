@@ -133,8 +133,10 @@ terraform init -backend-config=backend.conf
 ```
 terraform init -reconfigure -backend-config=backend.conf
 ```
+Если всё корректно, вот что мы увидим
 
-
+![Скриншот успеха](https://i.ibb.co/RD58RGr/Screenshot-from-2022-10-25-03-08-33.png)
+https://i.ibb.co/RD58RGr/Screenshot-from-2022-10-25-03-08-33.png
 
 
 
