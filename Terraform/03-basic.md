@@ -71,8 +71,9 @@ provider "yandex" {
 ```
 Создадим iam ключи доступа, что бы в дальнейшем использовать их для доступа к s3 бакет.
 ```
-yc iam access-key create --service-account-id #указываем наш сервис-аккаунт ID. Узнать можно с помощью yc iam access-key list
+yc iam access-key create --service-account-id #указываем наш сервис-аккаунт ID. 
 ```
+Узнать можно с помощью yc iam access-key list, а так же в веб-интерфейсе зайдя в учётную запись и посмотрев её публичные ключи.
 Из вывода этой команды для access key будет использовано значение key_id, а для secret_key будет использовано значение secret
 
 
@@ -128,9 +129,11 @@ secret_key = "наш ключ подлиннее"
 ```
 terraform init -backend-config=backend.conf
 ```
+Если что-то не получилось либо мы внесли правки в конфиги, можно\нужно переконфигурировать командой
 ```
-Terraform has been successfully initialized!
+terraform init -reconfigure -backend-config=backend.conf
 ```
+
 
 
 
