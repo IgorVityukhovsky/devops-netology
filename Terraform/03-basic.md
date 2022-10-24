@@ -34,12 +34,17 @@ dynamodb.
 
 ### Ответ
 ДЗ буду выполнять в яндекс облаке, ссылка на документацию по работе с Yandex Object Storage
+
 https://cloud.yandex.ru/docs/storage/quickstart?from=int-console-help-center-or-nav
 
 
 Создал s3 хранилище в веб-интерфейсе яндекс облака, назвал его s3-netology-mystate.
+
 В параметрах указал стандартное и публичное, 1гб.
+
 В веб-интерфейсе загрузил файл terraform.tfstate
+
 Дал аккаунту srv-netology полный доступ к всему хранилищу
+
 
 
