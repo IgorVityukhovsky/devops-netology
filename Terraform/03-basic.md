@@ -137,7 +137,6 @@ terraform init -reconfigure -backend-config=backend.conf
 
 ![Image](https://i.ibb.co/RD58RGr/Screenshot-from-2022-10-25-03-08-33.png)
 
-https://i.ibb.co/RD58RGr/Screenshot-from-2022-10-25-03-08-33.png
 
 
 
