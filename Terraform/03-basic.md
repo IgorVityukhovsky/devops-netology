@@ -76,10 +76,52 @@ yc iam access-key create --service-account-id #указываем наш сер�
 Из вывода этой команды для access key будет использовано значение key_id, а для secret_key будет использовано значение secret
 
 
-Для того, что бы наш терраформ знал, что у нас есть s3 хранилище, добавим в этот файл следующий код:
+В инструкции предлагается вставить описание бекенда в блок терраформ в следующем виде
+```
+backend "s3" {
+    endpoint   = "storage.yandexcloud.net"
+    bucket     = "s3-netology-mystate"
+    region     = "ru-central1"
+    key        = "terraform.tfstate"
+    backend-config = "backend.conf"
+    access_key = 
+    secret_key = 
+
+    skip_region_validation      = true
+    skip_credentials_validation = true
+  }
+```
+Однако в блоке terraform нельзя использовать переменные, поэтому значения ключей мы выведем в отдельный файл backend.conf и не будем выкладывать его на гитхаб. Я не нашел способа, который бы не использовал сложные конструкции из костылей и вместе с тем был бы безопасен.
+
+В итоге наш файл provider.tf будет выглядеть следующим образом 
+```
+# Provider
+terraform {
+  required_providers {
+    yandex = {
+      source = "yandex-cloud/yandex"
+    }
+  }
+  backend "s3" {
+    endpoint   = "storage.yandexcloud.net"
+    bucket     = "s3-netology-mystate"
+    #region     = "ru-central1"
+    key        = "terraform.tfstate"
+    backend-config = "backend.conf"
+    
+    skip_region_validation      = true
+    skip_credentials_validation = true
+  }
+}
+
+provider "yandex" {
+  service_account_key_file = "key.json"
+  cloud_id  = "${var.yandex_cloud_id}"
+  folder_id = "${var.yandex_folder_id}"
+}
 ```
 
-```
+
 
 
 
