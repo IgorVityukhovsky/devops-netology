@@ -84,8 +84,8 @@ backend "s3" {
     region     = "ru-central1"
     key        = "terraform.tfstate"
     backend-config = "backend.conf"
-    access_key = 
-    secret_key = 
+    access_key = ""
+    secret_key = ""
 
     skip_region_validation      = true
     skip_credentials_validation = true
@@ -120,7 +120,11 @@ provider "yandex" {
   folder_id = "${var.yandex_folder_id}"
 }
 ```
-
+А файл backend.conf будет выглядеть так
+```
+access_key = "наш ключ"
+secret_key = "наш ключ подлиннее"
+```
 
 
 
