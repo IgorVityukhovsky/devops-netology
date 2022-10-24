@@ -71,7 +71,7 @@ provider "yandex" {
 ```
 Создадим iam ключи доступа, что бы в дальнейшем использовать их для доступа к s3 бакет.
 ```
-yc iam access-key create --service-account-id #указываем наш сервис-аккаунт ID. Узнать можно с помощью yc iam access-key create
+yc iam access-key create --service-account-id #указываем наш сервис-аккаунт ID. Узнать можно с помощью yc iam access-key list
 ```
 Из вывода этой команды для access key будет использовано значение key_id, а для secret_key будет использовано значение secret
 
@@ -91,7 +91,7 @@ backend "s3" {
     skip_credentials_validation = true
   }
 ```
-Однако в блоке terraform нельзя использовать переменные, поэтому значения ключей мы выведем в отдельный файл backend.conf и не будем выкладывать его на гитхаб. Я не нашел способа, который бы не использовал сложные конструкции из костылей и вместе с тем был бы безопасен.
+Однако в блоке terraform нельзя использовать переменные, поэтому значения ключей мы выведем в отдельный файл backend.conf и не будем выкладывать его на гитхаб. Я не нашел способа, который бы не использовал сложные конструкции из костылей и вместе с тем был бы безопасен (т.е. не хранил бы ключи в открытом виде на машине)
 
 В итоге наш файл provider.tf будет выглядеть следующим образом 
 ```
@@ -105,10 +105,9 @@ terraform {
   backend "s3" {
     endpoint   = "storage.yandexcloud.net"
     bucket     = "s3-netology-mystate"
-    #region     = "ru-central1"
+    region     = "ru-central1-a"
     key        = "terraform.tfstate"
-    backend-config = "backend.conf"
-    
+        
     skip_region_validation      = true
     skip_credentials_validation = true
   }
@@ -124,6 +123,13 @@ provider "yandex" {
 ```
 access_key = "наш ключ"
 secret_key = "наш ключ подлиннее"
+```
+Запускаем командой 
+```
+terraform init -backend-config=backend.conf
+```
+```
+Terraform has been successfully initialized!
 ```
 
 
