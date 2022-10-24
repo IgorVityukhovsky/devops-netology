@@ -46,5 +46,33 @@ https://cloud.yandex.ru/docs/storage/quickstart?from=int-console-help-center-or-
 
 Дал аккаунту srv-netology полный доступ к всему хранилищу
 
+Следую документации дальше, нам необходим раздел настройки бекенда
+
+https://cloud.yandex.ru/docs/tutorials/infrastructure-management/terraform-state-storage#set-up-backend
+
+На данном этапе я имею файл provider.tf следующего содержания
+
+```
+# Provider
+terraform {
+  required_providers {
+    yandex = {
+      source = "yandex-cloud/yandex"
+    }
+  }
+}
+
+provider "yandex" {
+  service_account_key_file = "key.json"
+  cloud_id  = "${var.yandex_cloud_id}"
+  folder_id = "${var.yandex_folder_id}"
+}
+
+```
+Для того, что бы наш терраформ знал, что у нас есть s3 хранилище, добавим в этот файл следующий код:
+```
+
+```
+
 
 
