@@ -16,7 +16,8 @@ sudo nano /etc/resolv.conf
 ```
 nameserver 8.8.8.8
 ```
-Скачаем актуальную версию терраформ
+Скачаем актуальную версию терраформ. Ссылка для проверки актуальной версии
+https://hashicorp-releases.yandexcloud.net/terraform/
 ```
-curl -O https://hashicorp-releases.yandexcloud.net/terraform/1.3.3/terraform_1.3.3_linux_amd64.zip
+wget "https://hashicorp-releases.yandexcloud.net/terraform/1.3.3/terraform_1.3.3_linux_amd64.zip"
 ```
