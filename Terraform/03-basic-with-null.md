@@ -18,5 +18,5 @@ nameserver 8.8.8.8
 ```
 Скачаем актуальную версию терраформ
 ```
-curl -o https://hashicorp-releases.yandexcloud.net/terraform/1.3.3/terraform_1.3.3_linux_amd64.zip
+curl -O https://hashicorp-releases.yandexcloud.net/terraform/1.3.3/terraform_1.3.3_linux_amd64.zip
 ```
