@@ -4,4 +4,8 @@
 ```
 gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Alt>Shift_L']"
 ```
+Установим curl
+```
+sudo apt install curl
+```
 
