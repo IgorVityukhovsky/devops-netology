@@ -71,13 +71,25 @@ mkdir myterraform && cd myterraform
 ```
 yc iam key get ajenak22r4****** >> key.json
 ```
-Файл с выводом долежн быть как на примере из инструкции
+Файл с выводом сгенерируется примерно таким (пример из инструкции)
 ```
 id: aje8nn871qo4a8bbopvb
 service_account_id: ajehr0to1g8bh0la8c8r
 created_at: "2022-09-14T09:11:43.479156798Z"
 key_algorithm: RSA_2048
 ```
+Состояние не рабочее, нужно оформить его по правилам оформления json со своими значениями
+```
+{
+    "id": "***",
+    "service_account_id": "***",
+    "created_at": "***",
+    "key_algorithm": "***"
+}
+```
+
+
+
 Создадим профиль service-profile
 ```
 yc config profile create service-profile
@@ -91,6 +103,13 @@ yc config set service-account-key key.json
 yc config set cloud-id b1g8rvrldf45r9h4mnbl
 yc config set folder-id b1gcj17iv37qg7h91dfe  
 ```
+Добавим аутентификационные данные в переменные окружения
+```
+echo "export YC_TOKEN=$(yc iam create-token)" >> /etc/environment && source /etc/environment
+echo "export YC_CLOUD_ID=$(yc config get cloud-id)" >> /etc/environment && source /etc/environment
+echo "export YC_FOLDER_ID=$(yc config get folder-id)" >> /etc/environment && source /etc/environment
+```
+
 
 
 
