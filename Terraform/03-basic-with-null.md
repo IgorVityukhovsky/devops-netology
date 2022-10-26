@@ -37,6 +37,11 @@ curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
 ```
 yc --version
 ```
+Делаем симлинк
+```
+sudo ln -s /home/igor/yc /usr/bin/yc
+```
+
 При инициализации yc CLI выйдет ссылка по которой нужно перейти, что бы узнать свой токен.
 Если по каким то причинам этого не произошло можно:
 Из инструкции
