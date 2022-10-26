@@ -105,8 +105,8 @@ Profile 'service-profile' created and activated
 Зададим конфигурацию профиля используя наш key.json
 ```
 yc config set service-account-key key.json
-yc config set cloud-id b1g8rvrldf45r9h4mnbl
-yc config set folder-id b1gcj17iv37qg7h91dfe  
+yc config set cloud-id b1g8rvr*****r9h4mnbl
+yc config set folder-id b1gcj17*****g7h91dfe  
 ```
 Добавим аутентификационные данные в переменные окружения и прочтём их
 ```
