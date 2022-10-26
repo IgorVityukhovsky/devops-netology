@@ -133,7 +133,7 @@ provider "yandex" {
   zone = "ru-central1-a"
 }
 ```
-Создадим подсеть в веб-интерфейсе, а так же заполним main.tf для проверки на создание ресурсов
+Создадим сеть и подсеть в веб-интерфейсе, а так же заполним main.tf для проверки на создание ресурсов
 ```
 resource "yandex_compute_instance" "node01" {
   name                      = "node01"
@@ -155,7 +155,7 @@ resource "yandex_compute_instance" "node01" {
     }
   }
   network_interface {
-    subnet_id = "enpenfjkmb5ge5k7817o"
+    subnet_id = "e2l4hqmd505sl0fkj1lm"
     nat       = true
   }
 
