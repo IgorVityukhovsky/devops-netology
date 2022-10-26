@@ -170,6 +170,35 @@ resource "yandex_compute_instance" "node01" {
 ```
 terraform init
 ```
+В наш provider.tf добавим информацию о бекенде.
+В итоге он будет иметь вид
+```
+ terraform {
+  required_providers {
+    yandex = {
+      source = "yandex-cloud/yandex"
+    }
+    backend "s3" {
+    endpoint   = "storage.yandexcloud.net"
+    bucket     = "s3-netology-mystate2"
+    region     = "testfolder/ru-central1-a"
+    key        = "terraform.tfstate"
+        
+    skip_region_validation      = true
+    skip_credentials_validation = true
+  }
+  }
+  required_version = ">= 0.13"
+}
+
+provider "yandex" {
+  zone = "ru-central1-a"
+}
+ 
+```
+
+
+
 Создадим iam ключи доступа, что бы управлять s3 бакетом в будущем.
 Можно использовать уже существующие ключи, если мы знаем их access key и secret key.
 Но если мы их не знаем, секретная часть выдаётся только один раз при генерации, поэтому сгенерируем ключи
@@ -177,6 +206,12 @@ terraform init
 yc iam access-key create --service-account-id aje164j36fslfgb32qce --description "bucket key"
 ```
 Из вывода нас интересует key_id (это наш access key) и secret (это наш secret key)
+Создадим файл backend.conf и запишем туда эти данные
+```
+access_key = "наш ключ"
+secret_key = "наш ключ подлиннее"
+```
+
 
 
 
