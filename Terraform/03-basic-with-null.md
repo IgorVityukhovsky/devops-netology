@@ -78,6 +78,11 @@ service_account_id: ajehr0to1g8bh0la8c8r
 created_at: "2022-09-14T09:11:43.479156798Z"
 key_algorithm: RSA_2048
 ```
-
+Создадим профиль service-profile
+```
+yc config profile create service-profile
+```
+Profile 'service-profile' created and activated
+```
 
 
