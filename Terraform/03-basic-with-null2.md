@@ -179,14 +179,14 @@ terraform init
       source = "yandex-cloud/yandex"
     }
     backend "s3" {
-    endpoint   = "storage.yandexcloud.net"
-    bucket     = "s3-netology-mystate2"
-    region     = "testfolder/ru-central1-a"
-    key        = "terraform.tfstate"
-        
-    skip_region_validation      = true
-    skip_credentials_validation = true
-  }
+      endpoint = "storage.yandexcloud.net"
+      bucket   = "s3-netology-mystate2"
+      region   = "testfolder/ru-central1-a"
+      key      = "terraform.tfstate"
+
+      skip_region_validation      = true
+      skip_credentials_validation = true
+    }
   }
   required_version = ">= 0.13"
 }
@@ -194,6 +194,7 @@ terraform init
 provider "yandex" {
   zone = "ru-central1-a"
 }
+
  
 ```
 
