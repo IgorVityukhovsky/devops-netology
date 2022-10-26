@@ -155,11 +155,7 @@ resource "yandex_compute_instance" "node01" {
     }
   }
 
-  network_interface {
-    subnet_id = "${yandex_vpc_subnet.default.id}"
-    nat       = true
-  }
-
+  
   metadata = {
     ssh-keys = "centos:${file("~/.ssh/id_rsa.pub")}"
   }
@@ -212,7 +208,11 @@ yc iam access-key create --service-account-id aje164j36fslfgb32qce --description
 access_key = "наш ключ"
 secret_key = "наш ключ подлиннее"
 ```
-
+В блоке terraform нельзя использовать переменные, таким образом мы вывели секреты отдельно, что бы не хранить их на гите.
+Переконфигурируем наш терраформ.
+```
+terraform init -reconfigure -backend-config=backend.conf
+```
 
 
 
