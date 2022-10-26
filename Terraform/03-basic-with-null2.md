@@ -220,6 +220,10 @@ secret_key = "наш ключ подлиннее"
 ```
 terraform init -reconfigure -backend-config=backend.conf
 ```
-
-
-
+Проверим, что все процессы будут происходить
+```
+terraform plan
+terraform apply
+terrafrom destroy
+```
+В наш бакет записался state файл
