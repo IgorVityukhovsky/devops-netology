@@ -177,8 +177,10 @@ terraform init
   backend "s3" {
       endpoint = "storage.yandexcloud.net"
       bucket   = "s3-netology-mystate2"
-      region   = "testfolder/ru-central1-a"
-      key      = "terraform.tfstate"
+      region   = "ru-central1-a"
+      key      = "testfolder/terraform.tfstate"
+      access_key = "YCAJEuaUsqTJ0zxKwy6o9u4ct"
+      secret_key = "YCMIundsYTft-w1Fn-IxxJOpo95c6IRvuFvnIyd3"
 
       skip_region_validation      = true
       skip_credentials_validation = true
