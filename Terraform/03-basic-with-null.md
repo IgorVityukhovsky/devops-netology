@@ -24,7 +24,8 @@ wget "https://hashicorp-releases.yandexcloud.net/terraform/1.3.3/terraform_1.3.3
 ```
 unzip terraform_1.3.3_linux_amd64.zip 
 ```
-Добавим путь к терраформ в переменную PATH
+Создадим симлинк и сделаем файлы исполняемыми
 ```
-export PATH=$PATH:/home/igor
+sudo ln -s /home/igor/terraform /usr/bin/terraform
+sudo chmod ugo+x /usr/bin/terraform*
 ```
