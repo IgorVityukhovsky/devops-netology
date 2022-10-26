@@ -39,7 +39,7 @@ yc --version
 ```
 Делаем симлинк
 ```
-sudo ln -s /home/igor/yc /usr/bin/yc
+sudo ln -s /home/igor/yandex-cloud/bin/yc /usr/bin/yc
 ```
 
 При инициализации yc CLI выйдет ссылка по которой нужно перейти, что бы узнать свой токен.
