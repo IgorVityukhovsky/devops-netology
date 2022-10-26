@@ -98,6 +98,8 @@ sudo sh -c "echo export YC_FOLDER_ID=\$\(yc config get folder-id\) >> /etc/envir
 ```
 source /etc/environment
 ```
+Так же скопировал ssh ключи для машин в директорию .ssh
+
 Настройка терраформ.
 
 Добавим зеркала в терраформ
@@ -131,8 +133,50 @@ provider "yandex" {
   zone = "ru-central1-a"
 }
 ```
+А так же main.tf для проверки на создание ресурсов
+```
+resource "yandex_compute_instance" "node01" {
+  name                      = "node01"
+  zone                      = "ru-central1-a"
+  hostname                  = "node01.netology.cloud"
+  allow_stopping_for_update = true
 
+  resources {
+    cores  = 8
+    memory = 8
+  }
 
+  boot_disk {
+    initialize_params {
+      image_id    = "fd8kb72eo1r5fs97a1ki" #ubuntu
+      name        = "root-node01"
+      type        = "network-nvme"
+      size        = "50"
+    }
+  }
+
+  network_interface {
+    subnet_id = "${yandex_vpc_subnet.default.id}"
+    nat       = true
+  }
+
+  metadata = {
+    ssh-keys = "centos:${file("~/.ssh/id_rsa.pub")}"
+  }
+}
+
+```
+Инициализируем терраформ
+```
+terraform init
+```
+Создадим iam ключи доступа, что бы управлять s3 бакетом в будущем.
+Можно использовать уже существующие ключи, если мы знаем их access key и secret key.
+Но если мы их не знаем, секретная часть выдаётся только один раз при генерации, поэтому сгенерируем ключи
+```
+yc iam access-key create --service-account-id aje164j36fslfgb32qce --description "bucket key"
+```
+Из вывода нас интересует key_id (это наш access key) и secret (это наш secret key)
 
 
 
