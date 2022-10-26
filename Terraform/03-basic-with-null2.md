@@ -88,12 +88,13 @@ yc config set service-account-key authorized_key.json
 yc config set cloud-id b1g8rvrldf45r9h4mnbl
 yc config set folder-id b1gcj17iv37qg7h91dfe  
 ```
-Добавим аутентификационные данные в переменные окружения (файл /etc/environment) и прочтём их
+Добавим аутентификационные данные в переменные окружения. Некоторые символы экранируем, что бы вставлялись команды, а не их значения
 ```
 sudo sh -c "echo export YC_TOKEN=\$\(yc iam create-token\) >> /etc/environment"
 sudo sh -c "echo export YC_CLOUD_ID=\$\(yc config get cloud-id\) >> /etc/environment"
 sudo sh -c "echo export YC_FOLDER_ID=\$\(yc config get folder-id\) >> /etc/environment"
 ```
+И прочтём их
 ```
 source /etc/environment
 ```
