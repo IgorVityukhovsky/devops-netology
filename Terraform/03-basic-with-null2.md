@@ -174,11 +174,7 @@ terraform init
 В итоге он будет иметь вид
 ```
  terraform {
-  required_providers {
-    yandex = {
-      source = "yandex-cloud/yandex"
-    }
-    backend "s3" {
+  backend "s3" {
       endpoint = "storage.yandexcloud.net"
       bucket   = "s3-netology-mystate2"
       region   = "testfolder/ru-central1-a"
@@ -187,6 +183,11 @@ terraform init
       skip_region_validation      = true
       skip_credentials_validation = true
     }
+  required_providers {
+    yandex = {
+      source = "yandex-cloud/yandex"
+    }
+    
   }
   required_version = ">= 0.13"
 }
