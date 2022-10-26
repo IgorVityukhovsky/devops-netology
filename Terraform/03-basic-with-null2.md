@@ -98,6 +98,39 @@ sudo sh -c "echo export YC_FOLDER_ID=\$\(yc config get folder-id\) >> /etc/envir
 ```
 source /etc/environment
 ```
+Настройка терраформ.
+
+Добавим зеркала в терраформ
+```
+nano ~/.terraformrc
+```
+```
+provider_installation {
+  network_mirror {
+    url = "https://terraform-mirror.yandexcloud.net/"
+    include = ["registry.terraform.io/*/*"]
+  }
+  direct {
+    exclude = ["registry.terraform.io/*/*"]
+  }
+}
+```
+
+Создадим provider.tf
+```
+terraform {
+  required_providers {
+    yandex = {
+      source = "yandex-cloud/yandex"
+    }
+  }
+  required_version = ">= 0.13"
+}
+
+provider "yandex" {
+  zone = "ru-central1-a"
+}
+```
 
 
 
