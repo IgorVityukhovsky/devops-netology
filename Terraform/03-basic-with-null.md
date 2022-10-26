@@ -82,7 +82,15 @@ key_algorithm: RSA_2048
 ```
 yc config profile create service-profile
 ```
+```
 Profile 'service-profile' created and activated
 ```
+Зададим конфигурацию профиля используя наш key.json
+```
+yc config set service-account-key key.json
+yc config set cloud-id b1g8rvrldf45r9h4mnbl
+yc config set folder-id b1gcj17iv37qg7h91dfe  
+```
+
 
 
