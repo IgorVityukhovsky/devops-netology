@@ -10,11 +10,7 @@ sudo apt install curl
 ```
 Изменим конфиг, что бы DNS корректно резовлвились
 ```
-sudo nano /etc/resolv.conf
-```
-Приведём строчку к виду
-```
-nameserver 8.8.8.8
+sudo sh -c "echo 'nameserver 8.8.8.8' >> /etc/resolv.conf"
 ```
 Скачаем актуальную версию терраформ
 ```
@@ -92,12 +88,17 @@ yc config set service-account-key authorized_key.json
 yc config set cloud-id b1g8rvrldf45r9h4mnbl
 yc config set folder-id b1gcj17iv37qg7h91dfe  
 ```
-Добавим аутентификационные данные в переменные окружения и прочтём их
+Добавим аутентификационные данные в переменные окружения (файл /etc/environment) и прочтём их
 ```
-echo "export YC_TOKEN=$(yc iam create-token)" >> /etc/environment && source /etc/environment
-echo "export YC_CLOUD_ID=$(yc config get cloud-id)" >> /etc/environment && source /etc/environment
-echo "export YC_FOLDER_ID=$(yc config get folder-id)" >> /etc/environment && source /etc/environment
+export YC_TOKEN=$(yc iam create-token)
+export YC_CLOUD_ID=$(yc config get cloud-id)
+sudo sh -c "echo export YC_FOLDER_ID=\$\(yc config get folder-id\) >> /etc/environment"
 ```
+```
+source /etc/environment
+```
+sudo sh -c "echo export YC_TOKEN3=\$\(yc iam create-token\) >> /etc/environment"
+sudo sh -c "echo export YC_CLOUD_ID=$(yc config get cloud-id) >> /etc/environment"
 
 
 
