@@ -133,7 +133,7 @@ provider "yandex" {
   zone = "ru-central1-a"
 }
 ```
-А так же main.tf для проверки на создание ресурсов
+Создадим подсеть в веб-интерфейсе, а так же заполним main.tf для проверки на создание ресурсов
 ```
 resource "yandex_compute_instance" "node01" {
   name                      = "node01"
@@ -148,18 +148,22 @@ resource "yandex_compute_instance" "node01" {
 
   boot_disk {
     initialize_params {
-      image_id    = "fd8kb72eo1r5fs97a1ki" #ubuntu
-      name        = "root-node01"
-      type        = "network-nvme"
-      size        = "50"
+      image_id = "fd8kb72eo1r5fs97a1ki" #ubuntu
+      name     = "root-node01"
+      type     = "network-nvme"
+      size     = "50"
     }
   }
+  network_interface {
+    subnet_id = "enpenfjkmb5ge5k7817o"
+    nat       = true
+  }
 
-  
   metadata = {
     ssh-keys = "centos:${file("~/.ssh/id_rsa.pub")}"
   }
 }
+
 
 ```
 Инициализируем терраформ
