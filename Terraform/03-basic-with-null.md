@@ -29,3 +29,16 @@ unzip terraform_1.3.3_linux_amd64.zip
 sudo ln -s /home/igor/terraform /usr/bin/terraform
 sudo chmod ugo+x /usr/bin/terraform*
 ```
+Установка Яндекс Клауд CLI
+```
+curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
+```
+Далее необходимо перезапустить терминал и проверить, что всё установилось
+```
+yc --version
+```
+
+
+
+
+
