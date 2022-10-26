@@ -37,7 +37,27 @@ curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
 ```
 yc --version
 ```
+При инициализации yc CLI выйдет ссылка по которой нужно перейти, что бы узнать свой токен.
+Если по каким то причинам этого не произошло можно:
+Из инструкции
+https://cloud.yandex.ru/docs/cli/quickstart#install
+перейти по ссылке 
+https://oauth.yandex.ru/authorize?response_type=token&client_id=1a6990aa636648e9b2ef855fa7bec2fb
+Получаем наш токен
 
+
+
+Инициализируем yc CLI
+```
+yc init
+```
+Вставляем наш токен.
+При дальнейших вопросах ответил, что folder по умолчанию это netology, зона ru-central1-a (криншот)
+
+Проверить наши настройки 
+```
+yc config list
+```
 
 
 
