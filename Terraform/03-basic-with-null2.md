@@ -287,6 +287,172 @@ resource "aws_instance" "server" {
 
 Сдесь мы создали список с id наших подсетей, а затем создаём по инстансу для каждой подсети.
 
+Вывод команды terraform workspace list
+Screen
+
+Вывод команды terraform
+```
+terraform plan
+
+Terraform used the selected providers to generate the following execution plan.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # yandex_compute_instance.node01[0] will be created
+  + resource "yandex_compute_instance" "node01" {
+      + allow_stopping_for_update = true
+      + created_at                = (known after apply)
+      + folder_id                 = (known after apply)
+      + fqdn                      = (known after apply)
+      + hostname                  = "node01.netology.cloud"
+      + id                        = (known after apply)
+      + metadata                  = {
+          + "ssh-keys" = <<-EOT
+                centos:-----BEGIN PUBLIC KEY-----
+                MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAptCr44sFVJVmjDiq0Cy7
+                twQps1pYHMzkr//XSDf+YA+FZ/ZokzvZNJ4RMbLcZzlcXqc2sG3d8I0EtdSPa2nx
+                yZrv4SDNmK89Ugp4Ppev1MjKM5tDc6xAec3dEccURgXLO/SHTchPpftUM/gYA7t6
+                s6oAoIySSOZUcYQtdkf7i90/gG5LPhfL/GmBR6Dw5zS7qhHXQ+p2p0h9/cqmomvR
+                F5H8hs1THrYMqfXC+WHH6Ddl9ncsdqpIF4S5XWZ4TfeJhTwX4TzkH+pnkkTU5BxF
+                h0GgWnjTNDQnYuN3HvGR5QRFpkd19uPBcl0FY0w1F4jQTgEzuuP11iWAo+R3LuRS
+                gQIDAQAB
+                -----END PUBLIC KEY-----
+            EOT
+        }
+      + name                      = "node01"
+      + network_acceleration_type = "standard"
+      + platform_id               = "standard-v1"
+      + service_account_id        = (known after apply)
+      + status                    = (known after apply)
+      + zone                      = "ru-central1-a"
+
+      + boot_disk {
+          + auto_delete = true
+          + device_name = (known after apply)
+          + disk_id     = (known after apply)
+          + mode        = (known after apply)
+
+          + initialize_params {
+              + block_size  = (known after apply)
+              + description = (known after apply)
+              + image_id    = "fd8kb72eo1r5fs97a1ki"
+              + name        = "root-node01"
+              + size        = 50
+              + snapshot_id = (known after apply)
+              + type        = "network-nvme"
+            }
+        }
+
+      + network_interface {
+          + index              = (known after apply)
+          + ip_address         = (known after apply)
+          + ipv4               = true
+          + ipv6               = (known after apply)
+          + ipv6_address       = (known after apply)
+          + mac_address        = (known after apply)
+          + nat                = true
+          + nat_ip_address     = (known after apply)
+          + nat_ip_version     = (known after apply)
+          + security_group_ids = (known after apply)
+          + subnet_id          = "e9brl9jl7f9vhiki8c3q"
+        }
+
+      + placement_policy {
+          + host_affinity_rules = (known after apply)
+          + placement_group_id  = (known after apply)
+        }
+
+      + resources {
+          + core_fraction = 100
+          + cores         = 8
+          + memory        = 8
+        }
+
+      + scheduling_policy {
+          + preemptible = (known after apply)
+        }
+    }
+
+  # yandex_compute_instance.node01[1] will be created
+  + resource "yandex_compute_instance" "node01" {
+      + allow_stopping_for_update = true
+      + created_at                = (known after apply)
+      + folder_id                 = (known after apply)
+      + fqdn                      = (known after apply)
+      + hostname                  = "node01.netology.cloud"
+      + id                        = (known after apply)
+      + metadata                  = {
+          + "ssh-keys" = <<-EOT
+                centos:-----BEGIN PUBLIC KEY-----
+                MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAptCr44sFVJVmjDiq0Cy7
+                twQps1pYHMzkr//XSDf+YA+FZ/ZokzvZNJ4RMbLcZzlcXqc2sG3d8I0EtdSPa2nx
+                yZrv4SDNmK89Ugp4Ppev1MjKM5tDc6xAec3dEccURgXLO/SHTchPpftUM/gYA7t6
+                s6oAoIySSOZUcYQtdkf7i90/gG5LPhfL/GmBR6Dw5zS7qhHXQ+p2p0h9/cqmomvR
+                F5H8hs1THrYMqfXC+WHH6Ddl9ncsdqpIF4S5XWZ4TfeJhTwX4TzkH+pnkkTU5BxF
+                h0GgWnjTNDQnYuN3HvGR5QRFpkd19uPBcl0FY0w1F4jQTgEzuuP11iWAo+R3LuRS
+                gQIDAQAB
+                -----END PUBLIC KEY-----
+            EOT
+        }
+      + name                      = "node01"
+      + network_acceleration_type = "standard"
+      + platform_id               = "standard-v1"
+      + service_account_id        = (known after apply)
+      + status                    = (known after apply)
+      + zone                      = "ru-central1-a"
+
+      + boot_disk {
+          + auto_delete = true
+          + device_name = (known after apply)
+          + disk_id     = (known after apply)
+          + mode        = (known after apply)
+
+          + initialize_params {
+              + block_size  = (known after apply)
+              + description = (known after apply)
+              + image_id    = "fd8kb72eo1r5fs97a1ki"
+              + name        = "root-node01"
+              + size        = 50
+              + snapshot_id = (known after apply)
+              + type        = "network-nvme"
+            }
+        }
+
+      + network_interface {
+          + index              = (known after apply)
+          + ip_address         = (known after apply)
+          + ipv4               = true
+          + ipv6               = (known after apply)
+          + ipv6_address       = (known after apply)
+          + mac_address        = (known after apply)
+          + nat                = true
+          + nat_ip_address     = (known after apply)
+          + nat_ip_version     = (known after apply)
+          + security_group_ids = (known after apply)
+          + subnet_id          = "e9brl9jl7f9vhiki8c3q"
+        }
+
+      + placement_policy {
+          + host_affinity_rules = (known after apply)
+          + placement_group_id  = (known after apply)
+        }
+
+      + resources {
+          + core_fraction = 100
+          + cores         = 8
+          + memory        = 8
+        }
+
+      + scheduling_policy {
+          + preemptible = (known after apply)
+        }
+    }
+
+Plan: 2 to add, 0 to change, 0 to destroy.
+```
+
 
 
 
