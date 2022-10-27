@@ -231,6 +231,35 @@ terraform workspace new stage
 ```
 В main.tf в наш ресурс добавим строчку
 ```
-count = terraform.workspace == "stage" ? "1" : "2"
+count = terraform.workspace == "stage" ? "1" : terraform.workspace == "prod" ? "2" : "1"
 ```
+В этой строке описано условие, если workspace равен stage, то количество ресурсов 1, если prod, то 2, во всех остальных случаях 1.
+
+
+Новый воркспейс изолирован от других, поэтому снова выполняем инициализацию и не забудем про наш конфигурационный файл для бекенда.
+В s3 наш state файл будет храниться отдельно.
+```
+terraform init -reconfigure -backend-config=backend.conf
+```
+Узнаем, что планирует создать терраформ
+```
+terraform plan
+```
+```
+Plan: 1 to add, 0 to change, 0 to destroy
+```
+Всё сходится, наш workspace сейчас stage и для него мы прописали создать 1 ресурс.
+Проверим тоже самое в workspace prod
+```
+terraform workspace new prod
+terraform init -reconfigure -backend-config=backend.conf
+terraform plan
+```
+```
+Plan: 2 to add, 0 to change, 0 to destroy
+```
+В workspace prod создаётся 2 ресурса, как мы и хотели.
+
+
+
 
