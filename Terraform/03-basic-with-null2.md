@@ -223,4 +223,14 @@ terraform plan
 terraform apply
 terrafrom destroy
 ```
-В наш бакет записался state файл/
+В наш бакет записался state файл
+
+Создадим новый workspace, после чего система сообщит нам о том, что он создан и сделан switch на него
+```
+terraform workspace new stage
+```
+В main.tf в наш ресурс добавим строчку
+```
+count = terraform.workspace == "stage" ? "1" : "2"
+```
+
