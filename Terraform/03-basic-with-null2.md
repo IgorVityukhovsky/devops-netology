@@ -260,6 +260,33 @@ Plan: 2 to add, 0 to change, 0 to destroy
 ```
 В workspace prod создаётся 2 ресурса, как мы и хотели.
 
+Так же можно было бы использовать конструкцию
+```
+locals {
+  instances = {
+	  stage = 1
+		prod   = 2
+	}
+}
+
+count = locals.instances[terraform.workspace]
+```
+
+Для for_each сработает примерно та же конструкция. 
+```
+locals {
+  subnet_ids = toset([
+    "subnet-abcdef",
+    "subnet-012345",
+  ])
+}
+
+resource "aws_instance" "server" {
+  for_each = local.subnet_ids
+```
+
+Сдесь мы создали список с id наших подсетей, а затем создаём по инстансу для каждой подсети.
+
 
 
 
