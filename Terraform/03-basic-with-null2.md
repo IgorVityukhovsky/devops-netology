@@ -45,9 +45,11 @@ sudo ln -s /home/igor/yandex-cloud/bin/yc /usr/bin/yc
 Из инструкции
 
 https://cloud.yandex.ru/docs/cli/quickstart#install
+
 перейти по ссылке 
 
 https://oauth.yandex.ru/authorize?response_type=token&client_id=1a6990aa636648e9b2ef855fa7bec2fb
+
 Получаем наш токен
 
 
@@ -288,6 +290,7 @@ resource "aws_instance" "server" {
 Сдесь мы создали список с id наших подсетей, а затем создаём по инстансу для каждой подсети.
 
 Вывод команды terraform workspace list
+
 ![Image](https://i.ibb.co/zSVr1b4/Screenshot-from-2022-10-27-21-48-49.png)
 
 Вывод команды terraform plan
