@@ -179,8 +179,7 @@ terraform init
       bucket   = "s3-netology-mystate2"
       region   = "ru-central1-a"
       key      = "testfolder/terraform.tfstate"
-      access_key = "YCAJEuaUsqTJ0zxKwy6o9u4ct"
-      secret_key = "YCMIundsYTft-w1Fn-IxxJOpo95c6IRvuFvnIyd3"
+      
 
       skip_region_validation      = true
       skip_credentials_validation = true
@@ -200,8 +199,6 @@ provider "yandex" {
 
  
 ```
-
-
 
 Создадим iam ключи доступа, что бы управлять s3 бакетом в будущем.
 Можно использовать уже существующие ключи, если мы знаем их access key и secret key.
@@ -226,4 +223,4 @@ terraform plan
 terraform apply
 terrafrom destroy
 ```
-В наш бакет записался state файл
+В наш бакет записался state файл/
