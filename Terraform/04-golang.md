@@ -112,8 +112,7 @@ func main() {
 	for i := 1; i <= 100; i++ {
 		var i float64 = float64(i)
 		var devision_result float64 = i / 3
-		//var result int
-
+		
 		if devision_result == float64(int(devision_result)) {
 			fmt.Println(i)
 		}
