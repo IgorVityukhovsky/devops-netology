@@ -49,9 +49,22 @@
 
 ---
 
-### Как cдавать задание
+### Ответ:
 
-Выполненное домашнее задание пришлите ссылкой на .md-файл в вашем репозитории.
-
----
+Программа перевода метров в футы
+    ```
+    package main
+    
+    import "fmt"
+    
+    func main() {
+        fmt.Print("Enter a number: ")
+        var input float64
+        fmt.Scanf("%f", &input)
+    
+        output := input * 0.3048
+    
+        fmt.Println(output)    
+    }
+    ```
 
