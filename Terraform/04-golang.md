@@ -101,8 +101,9 @@ func main() {
 }
 ```
 Программа выдающие числа кратные трём для целых чисел от 1 до 100.
+
 В цикле каждое число делится на 3. Если результат соответствует его округлённому числу, значит поделилось не дробно и в результате вышло целое число.
-Значит оно кратно трём.
+Значит оно кратно трём. Результат добавляется в срез и выводится
 ```
 package main
 
@@ -111,13 +112,15 @@ import (
 )
 
 func main() {
+	result := []int{}
 	for i := 1; i <= 100; i++ {
 		var i float64 = float64(i)
 		var devision_result float64 = i / 3
-		
+
 		if devision_result == float64(int(devision_result)) {
-			fmt.Println(i)
+			result = append(result, int(i))
 		}
 	}
+	fmt.Println(result)
 }
 ```
