@@ -114,11 +114,10 @@ import (
 func main() {
 	result := []int{}
 	for i := 1; i <= 100; i++ {
-		var i float64 = float64(i)
-		var devision_result float64 = i / 3
+		var devision_result float64 = float64(i) / 3
 
 		if devision_result == float64(int(devision_result)) {
-			result = append(result, int(i))
+			result = append(result, i)
 		}
 	}
 	fmt.Println(result)
