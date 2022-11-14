@@ -9,3 +9,10 @@ ok: [localhost] => {
     "msg": 12
 }
 ```
+Указанное значение находилось в 01-base/playbook/group_vars/all/examp.yml. Поменял на all default fact. Повторил команду, получил вывод
+```
+ASK [Print fact] **********************************************************************************
+ok: [localhost] => {
+    "msg": "all default fact"
+}
+```
