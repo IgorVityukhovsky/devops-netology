@@ -128,6 +128,6 @@ prod.yml привёл к виду
   local:
     hosts:
       localhost:
-        ansoble_connection: local
+        ansible_connection: local
 ```
 
