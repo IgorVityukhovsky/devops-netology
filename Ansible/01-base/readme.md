@@ -58,8 +58,8 @@ ok: [localhost] => {
 }
 ```
 ```
-docker run -d -it ubuntu
+docker run --name=ubuntu -d -it ubuntu
 ```
 ```
-docker run --d -it centos:7
+docker run --name=centos7 -d -it centos:7
 ```
