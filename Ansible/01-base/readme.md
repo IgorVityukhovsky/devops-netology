@@ -78,7 +78,7 @@ ok: [ubuntu] => {
     "msg": "deb"
 }
 ```
-Подкорректировал /ansible/playbook/group_vars/deb/example.yml
+Подкорректировал /ansible/playbook/group_vars/deb/example.yml  
 Подкорректировал /ansible/playbook/group_vars/el/example.yml
 ```
 ansible-playbook -i inventory/prod.yml site.yml
