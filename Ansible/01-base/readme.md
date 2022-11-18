@@ -111,7 +111,23 @@ Vault password:
 ```
 Не нашел информации в ansible-doc. На docs.ansible.com нашел следующие упоминания.
 ```
-Plugins extend Ansible’s core functionality and execute on the control node within the /usr/bin/ansible process. Plugins offer options and extensions for the core features of Ansible - transforming data, logging output, connecting to inventory, and more
+Plugins extend Ansible’s core functionality and execute on the control node within the /usr/bin/ansible process.  
+Plugins offer options and extensions for the core features of Ansible - transforming data, logging output, connecting to inventory, and more
 ```
-
+prod.yml привёл к виду
+```
+---
+  el:
+    hosts:
+      centos7:
+        ansible_connection: docker
+  deb:
+    hosts:
+      ubuntu:
+        ansible_connection: docker
+  local:
+    hosts:
+      localhost:
+        ansoble_connection: localhost
+```
 
