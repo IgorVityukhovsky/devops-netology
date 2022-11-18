@@ -69,14 +69,7 @@ docker run --name=ubuntu -d -it python
 ```
 ansible-playbook -i inventory/prod.yml site.yml
 ```
-```
-ok: [ubuntu] => {
-    "msg": "Debian"
-}
-ok: [centos7] => {
-    "msg": "CentOS"
-}
-```
+
 ```
 ok: [centos7] => {
     "msg": "el"
