@@ -58,8 +58,8 @@ ok: [localhost] => {
 }
 ```
 ```
-docker run ubuntu
+docker run -d -it ubuntu
 ```
 ```
-docker run centos:7
+docker run --d -it centos:7
 ```
