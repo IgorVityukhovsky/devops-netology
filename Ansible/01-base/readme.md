@@ -57,9 +57,31 @@ ok: [localhost] => {
     "msg": "all default fact"
 }
 ```
-```
-docker run --name=ubuntu -d -it ubuntu
-```
+
+Поднял докер контейнер с центосом
 ```
 docker run --name=centos7 -d -it centos:7
+```
+Поднял докер контейнер с убунту. Использовался образ python, так как в образе ubuntu нет пакетов python, из-за чего Ansible не может им управлять. Образ python базируется на debian и подходит нам для выполнения задач
+```
+docker run --name=ubuntu -d -it python 
+```
+```
+ansible-playbook -i inventory/prod.yml site.yml
+```
+```
+ok: [ubuntu] => {
+    "msg": "Debian"
+}
+ok: [centos7] => {
+    "msg": "CentOS"
+}
+```
+```
+ok: [centos7] => {
+    "msg": "el"
+}
+ok: [ubuntu] => {
+    "msg": "deb"
+}
 ```
