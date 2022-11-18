@@ -78,3 +78,16 @@ ok: [ubuntu] => {
     "msg": "deb"
 }
 ```
+Подкорректировал /ansible/playbook/group_vars/deb/example.yml
+Подкорректировал /ansible/playbook/group_vars/el/example.yml
+```
+ansible-playbook -i inventory/prod.yml site.yml
+```
+```
+ok: [centos7] => {
+    "msg": "el default fact"
+}
+ok: [ubuntu] => {
+    "msg": "deb default fact"
+}
+```
