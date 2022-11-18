@@ -109,4 +109,9 @@ Encryption successful
 ansible-playbook -i inventory/prod.yml site.yml --ask-vault-pass
 Vault password:
 ```
+Не нашел информации в ansible-doc. На docs.ansible.com нашел следующие упоминания.
+```
+Plugins extend Ansible’s core functionality and execute on the control node within the /usr/bin/ansible process. Plugins offer options and extensions for the core features of Ansible - transforming data, logging output, connecting to inventory, and more
+```
+
 
