@@ -104,3 +104,9 @@ New Vault password:
 Confirm New Vault password:
 Encryption successful
 ```
+Запускаем наш плейбук с нужным ключем, видим, что пароль запрашивается и всё отрабатывает
+```
+ansible-playbook -i inventory/prod.yml site.yml --ask-vault-pass
+Vault password:
+```
+
