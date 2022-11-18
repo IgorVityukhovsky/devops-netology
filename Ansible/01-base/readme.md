@@ -57,3 +57,9 @@ ok: [localhost] => {
     "msg": "all default fact"
 }
 ```
+```
+docker run ubuntu
+```
+```
+docker run centos:7
+```
