@@ -130,4 +130,18 @@ prod.yml привёл к виду
       localhost:
         ansible_connection: local
 ```
+```
+ansible-playbook -i inventory/prod.yml site.yml
+```
+```
+ok: [localhost] => {
+    "msg": "all default fact"
+}
+ok: [centos7] => {
+    "msg": "el default fact"
+}
+ok: [ubuntu] => {
+    "msg": "deb default fact"
+}
+```
 
