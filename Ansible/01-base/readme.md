@@ -78,8 +78,8 @@ ok: [ubuntu] => {
     "msg": "deb"
 }
 ```
-Подкорректировал /ansible/playbook/group_vars/deb/example.yml  
-Подкорректировал /ansible/playbook/group_vars/el/example.yml
+Подкорректировал /ansible/playbook/group_vars/deb/examp.yml  
+Подкорректировал /ansible/playbook/group_vars/el/examp.yml
 ```
 ansible-playbook -i inventory/prod.yml site.yml
 ```
@@ -90,4 +90,17 @@ ok: [centos7] => {
 ok: [ubuntu] => {
     "msg": "deb default fact"
 }
+```
+Шифруем файлы с фактами
+```
+:~/ansible/playbook$ ansible-vault encrypt group_vars/deb/examp.yml
+New Vault password:
+Confirm New Vault password:
+Encryption successful
+```
+```
+:~/ansible/playbook$ ansible-vault encrypt group_vars/el/examp.yml
+New Vault password:
+Confirm New Vault password:
+Encryption successful
 ```
