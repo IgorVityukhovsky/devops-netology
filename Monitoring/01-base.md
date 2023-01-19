@@ -244,7 +244,7 @@ curl http://localhost:9092/kapacitor/v1/ping
 ```
 curl: (7) Failed to connect to localhost port 9092 after 0 ms: Connection refused
 ```
-Не смог определить, почему некоторые команды отработали не так, как ожидается.  
+Не смог определить, почему некоторые команды отработали не так, как ожидается. Все контейнеры подняты и работают  
 Скриншот веб-интерфейса ПО chronograf (`http://localhost:8888`)  
 
 ![Image](https://i.ibb.co/z81w8Ky/Screenshot-from-2023-01-19-16-24-09.png)
