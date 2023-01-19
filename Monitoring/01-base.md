@@ -249,5 +249,27 @@ curl: (7) Failed to connect to localhost port 9092 after 0 ms: Connection refuse
 
 ![Image](https://i.ibb.co/z81w8Ky/Screenshot-from-2023-01-19-16-24-09.png)
 
+### Вопрос
+
+8. Перейдите в веб-интерфейс Chronograf (`http://localhost:8888`) и откройте вкладку `Data explorer`.
+
+    - Нажмите на кнопку `Add a query`
+    - Изучите вывод интерфейса и выберите БД `telegraf.autogen`
+    - В `measurments` выберите mem->host->telegraf_container_id , а в `fields` выберите used_percent. 
+    Внизу появится график утилизации оперативной памяти в контейнере telegraf.
+    - Вверху вы можете увидеть запрос, аналогичный SQL-синтаксису. 
+    Поэкспериментируйте с запросом, попробуйте изменить группировку и интервал наблюдений.
+
+Для выполнения задания приведите скриншот с отображением метрик утилизации места на диске 
+(disk->host->telegraf_container_id) из веб-интерфейса.
+#
+
+### Ответ
+
+
+![Image](https://i.ibb.co/n604QVs/Screenshot-from-2023-01-19-17-49-11.png)
+
+
+
 
 
