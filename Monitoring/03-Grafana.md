@@ -69,3 +69,13 @@
 ### Задание 1
 
 ![Image](https://i.ibb.co/LxMBbJL/Screenshot-from-2023-01-24-16-45-06.png)
+
+
+### Задание 2
+
+- Утилизация CPU для nodeexporter (в процентах, 100-idle)
+100 - (avg by (instance)(irate(node_cpu_seconds_total{instance="nodeexporter:9100",mode="idle"}[5m])) * 100)  
+
+- CPULA 1/5/15
+- Количество свободной оперативной памяти
+- Количество места на файловой системе
