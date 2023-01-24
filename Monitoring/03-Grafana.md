@@ -79,5 +79,15 @@
 ```
 
 - CPULA 1/5/15
+```
+avg_over_time(node_load1{instance='nodeexporter:9100'}[1m]
+```
+```
+avg_over_time(node_load1{instance='nodeexporter:9100'}[5m]
+```
+```
+avg_over_time(node_load1{instance='nodeexporter:9100'}[15m]
+```
+
 - Количество свободной оперативной памяти
 - Количество места на файловой системе
