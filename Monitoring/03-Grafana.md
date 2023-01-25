@@ -105,7 +105,11 @@ node_filesystem_avail_bytes {fstype=~"ext4|xfs"}
 
 ### Задание 3
 
-Настроил канал связи Телеграм, вставив токен ID и ID чата.
+Настроил канал связи Телеграм, вставив токен ID и ID чата.  
 Настроил алерт
 
 ![Image](https://i.ibb.co/r7xfVDQ/Screenshot-from-2023-01-25-14-48-41.png)
+
+Погасил контейнер с nodeexporter, в созданный мною бот пришел алерт
+![Image](https://i.ibb.co/89jkj5F/Screenshot-2023-01-25-145250.jpg)
+
