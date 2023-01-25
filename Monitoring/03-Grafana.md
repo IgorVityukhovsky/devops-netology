@@ -80,13 +80,13 @@
 
 - CPULA 1/5/15
 ```
-avg_over_time(node_load1{instance='nodeexporter:9100'}[1m]
+avg_over_time(node_load1{instance='nodeexporter:9100'}[1m])
 ```
 ```
-avg_over_time(node_load1{instance='nodeexporter:9100'}[5m]
+avg_over_time(node_load1{instance='nodeexporter:9100'}[5m])
 ```
 ```
-avg_over_time(node_load1{instance='nodeexporter:9100'}[15m]
+avg_over_time(node_load1{instance='nodeexporter:9100'}[15m])
 ```
 
 - Количество свободной оперативной памяти
@@ -95,3 +95,7 @@ node_memory_MemFree_bytes
 ```
 
 - Количество места на файловой системе
+```
+node_filesystem_avail_bytes {fstype=~"ext4|xfs"}
+```
+
