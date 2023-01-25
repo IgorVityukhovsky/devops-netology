@@ -125,6 +125,7 @@ node_filesystem_avail_bytes {fstype=~"ext4|xfs"}
 </details>
 
 <details>
+```json
 {
   "annotations": {
     "list": [
@@ -524,4 +525,5 @@ node_filesystem_avail_bytes {fstype=~"ext4|xfs"}
   "uid": "EgkjYPTVz",
   "version": 4
 }
+```
 </details>
