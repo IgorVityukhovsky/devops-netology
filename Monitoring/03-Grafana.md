@@ -113,3 +113,6 @@ node_filesystem_avail_bytes {fstype=~"ext4|xfs"}
 Погасил контейнер с nodeexporter, в созданный мною бот пришел алерт
 ![Image](https://i.ibb.co/89jkj5F/Screenshot-2023-01-25-145250.jpg)
 
+Итоговый dashboard
+
+![Image](https://i.ibb.co/1Q1rz7K/Screenshot-from-2023-01-25-14-55-03.png)
