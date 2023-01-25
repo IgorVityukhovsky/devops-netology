@@ -89,6 +89,7 @@ avg_over_time(node_load1{instance='nodeexporter:9100'}[5m])
 ```
 avg_over_time(node_load1{instance='nodeexporter:9100'}[15m])
 ```
+![Image](https://i.ibb.co/Qfrp3Rh/Screenshot-from-2023-01-25-12-55-20.png)
 
 - Количество свободной оперативной памяти
 ```
