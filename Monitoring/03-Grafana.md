@@ -105,4 +105,7 @@ node_filesystem_avail_bytes {fstype=~"ext4|xfs"}
 
 ### Задание 3
 
-![Image](https://i.ibb.co/hBytK0P/Screenshot-from-2023-01-25-12-41-44.png)
+Настроил канал связи Телеграм, вставив токен ID и ID чата.
+Настроил алерт
+
+![Image](https://i.ibb.co/r7xfVDQ/Screenshot-from-2023-01-25-14-48-41.png)
