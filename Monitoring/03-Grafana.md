@@ -77,7 +77,7 @@
 ```
 100 - (avg by (instance)(irate(node_cpu_seconds_total{instance="nodeexporter:9100",mode="idle"}[5m])) * 100)
 ```
-
+![Image](https://i.ibb.co/DYNCG0P/Screenshot-from-2023-01-25-12-54-03.png)
 
 - CPULA 1/5/15
 ```
