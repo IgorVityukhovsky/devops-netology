@@ -101,7 +101,7 @@ node_memory_MemFree_bytes
 ```
 node_filesystem_avail_bytes {fstype=~"ext4|xfs"}
 ```
-![Image](https://ibb.co/mT6JRZk)
+![Image](https://i.ibb.co/3dB1T62/Screenshot-from-2023-01-25-12-56-46.png)
 
 
 ![Image](https://i.ibb.co/hBytK0P/Screenshot-from-2023-01-25-12-41-44.png)
