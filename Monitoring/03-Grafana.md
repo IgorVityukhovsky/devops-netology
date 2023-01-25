@@ -119,12 +119,6 @@ node_filesystem_avail_bytes {fstype=~"ext4|xfs"}
 
 ### Задание 4  
 
-<details>
-    <summary>Название</summary>
-    Какой-нибудь длиинный дополнительный текст, который по умолчанию должен быть скрыт. Его можно показать, нажав на спойлер.
-</details>
-
-<details>
 ```json
 {
   "annotations": {
@@ -526,4 +520,3 @@ node_filesystem_avail_bytes {fstype=~"ext4|xfs"}
   "version": 4
 }
 ```
-</details>
