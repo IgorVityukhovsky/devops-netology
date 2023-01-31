@@ -76,7 +76,7 @@ sudo chown 0 filebeat.yml
 ```
 Изменить количество выделяемой виртуальной памяти:  
 ```
-sysctl -w vm.max_map_count=262144
+sudo sysctl -w vm.max_map_count=262144
 ```
 Компактный вывод работающих докер контейнеров:  
 ```
