@@ -86,3 +86,8 @@ sudo nano /etc/sysctl.conf
 ```
 docker ps --format 'table {{.Names}}\t{{.RunningFor}}\t{{.Status}}\t{{.Ports}}'
 ```
+Убраны заглавные буквы в строчке
+```
+index => "logstash-%{[@metadata][indexdate]}"
+```
+В конфиге logstash tcp заменено на beats
