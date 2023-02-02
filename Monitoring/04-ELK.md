@@ -96,3 +96,4 @@ docker compose up
 ```
 docker ps --format 'table {{.Names}}\t{{.RunningFor}}\t{{.Status}}\t{{.Ports}}'
 ```
+[Screenshot-from-2023-02-02-11-50-54.png](https://postimg.cc/yg3ThZrT)
