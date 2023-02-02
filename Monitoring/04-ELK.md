@@ -97,3 +97,6 @@ docker compose up
 docker ps --format 'table {{.Names}}\t{{.RunningFor}}\t{{.Status}}\t{{.Ports}}'
 ```
 [![Screenshot-from-2023-02-02-11-50-54.png](https://i.postimg.cc/G2qSCPF6/Screenshot-from-2023-02-02-11-50-54.png)](https://postimg.cc/yg3ThZrT)
+
+Индексы видны
+[![Screenshot-from-2023-02-02-12-06-28.png](https://i.postimg.cc/ZKKvn8rV/Screenshot-from-2023-02-02-12-06-28.png)](https://postimg.cc/23MSXB9Z)
