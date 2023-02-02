@@ -99,7 +99,7 @@ docker ps --format 'table {{.Names}}\t{{.RunningFor}}\t{{.Status}}\t{{.Ports}}'
 [![Screenshot-from-2023-02-02-11-50-54.png](https://i.postimg.cc/G2qSCPF6/Screenshot-from-2023-02-02-11-50-54.png)](https://postimg.cc/yg3ThZrT)
 
 Видем наши индексы
-[![Screenshot-from-2023-02-02-11-51-24.png](https://i.postimg.cc/4djZGTbD/Screenshot-from-2023-02-02-11-51-24.png)](https://postimg.cc/BL5R5kzp)
+[![Screenshot-from-2023-02-02-12-19-13.png](https://i.postimg.cc/G2m9trD9/Screenshot-from-2023-02-02-12-19-13.png)](https://postimg.cc/DWR7p9BK)
 
 В Discover видны распарсенные в JSON логи
 [![Screenshot-from-2023-02-02-12-06-28.png](https://i.postimg.cc/ZKKvn8rV/Screenshot-from-2023-02-02-12-06-28.png)](https://postimg.cc/23MSXB9Z)
