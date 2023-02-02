@@ -67,3 +67,5 @@ Free cloud account имеет следующие ограничения:
 # Выполнение  
 
 [![Project.png](https://i.postimg.cc/ZKJ5Prsd/Project.png)](https://postimg.cc/9zN2Cqhm)
+
+[![Stack-trace-resolved.png](https://i.postimg.cc/d3Lng74m/Stack-trace-resolved.png)](https://postimg.cc/CnpjqKyz)
