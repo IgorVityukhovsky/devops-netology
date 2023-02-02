@@ -71,3 +71,5 @@ Free cloud account имеет следующие ограничения:
 [![Stack-trace-resolved.png](https://i.postimg.cc/d3Lng74m/Stack-trace-resolved.png)](https://postimg.cc/CnpjqKyz)
 
 [![All-events.png](https://i.postimg.cc/Ls5TJgMd/All-events.png)](https://postimg.cc/QBL5PttS)
+
+[![Alert.png](https://i.postimg.cc/Fz43V7wH/Alert.png)](https://postimg.cc/0MVz828T)
