@@ -82,7 +82,7 @@ sudo sysctl -w vm.max_map_count=262144
 ```
 sudo nano /etc/sysctl.conf
 ```
-В конфиге logstash **tcp** заменено на **beats**  
+В конфиге logstash **tcp** заменено на **beats**  что бы избежать ошибок с кодировкой
 
 Убраны заглавные буквы в строчке
 ```
