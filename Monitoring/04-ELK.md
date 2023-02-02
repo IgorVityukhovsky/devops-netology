@@ -74,7 +74,7 @@ Filebeat следует сконфигурировать для отправки
 ```
 sudo chown 0 filebeat.yml
 ```
-Изменить количество выделяемой виртуальной памяти единоразово:  
+Изменить количество выделяемой виртуальной памяти. Единоразово:  
 ```
 sudo sysctl -w vm.max_map_count=262144
 ```
@@ -82,12 +82,17 @@ sudo sysctl -w vm.max_map_count=262144
 ```
 sudo nano /etc/sysctl.conf
 ```
-Компактный вывод работающих докер контейнеров:  
-```
-docker ps --format 'table {{.Names}}\t{{.RunningFor}}\t{{.Status}}\t{{.Ports}}'
-```
+В конфиге logstash **tcp** заменено на **beats**  
+
 Убраны заглавные буквы в строчке
 ```
 index => "logstash-%{[@metadata][indexdate]}"
 ```
-В конфиге logstash tcp заменено на beats
+Разворачиваем контейнеры  
+```
+docker compose up
+```
+Проверяем через некоторое время. Компактный вывод работающих докер контейнеров:  
+```
+docker ps --format 'table {{.Names}}\t{{.RunningFor}}\t{{.Status}}\t{{.Ports}}'
+```
