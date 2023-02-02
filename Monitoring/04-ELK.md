@@ -66,7 +66,6 @@ Filebeat следует сконфигурировать для отправки
 
  # Выполнение
  
- ## Задание 1
  
 Подготовим всё необходимое для корректной отработки docker compose.   
 Что бы всё поднялось без ошибок необходимо:  
@@ -99,7 +98,7 @@ docker ps --format 'table {{.Names}}\t{{.RunningFor}}\t{{.Status}}\t{{.Ports}}'
 [![Screenshot-from-2023-02-02-11-50-54.png](https://i.postimg.cc/G2qSCPF6/Screenshot-from-2023-02-02-11-50-54.png)](https://postimg.cc/yg3ThZrT)
 
 Видем наши индексы
-[![Screenshot-from-2023-02-02-12-19-13.png](https://ltdfoto.ru/images/2023/02/02/Screenshot-from-2023-02-02-12-20-53.png)]
+![Screenshot-from-2023-02-02-12-19-13.png](https://ltdfoto.ru/images/2023/02/02/Screenshot-from-2023-02-02-12-20-53.png)
 
 В Discover видны распарсенные в JSON логи
 [![Screenshot-from-2023-02-02-12-06-28.png](https://i.postimg.cc/ZKKvn8rV/Screenshot-from-2023-02-02-12-06-28.png)](https://postimg.cc/23MSXB9Z)
